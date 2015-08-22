@@ -10,4 +10,5 @@ import pl.tbns.model.Role;
  */
 public interface RoleDao extends JpaRepository<Role, Long>{
 
+	Role findByName(String name);
 }

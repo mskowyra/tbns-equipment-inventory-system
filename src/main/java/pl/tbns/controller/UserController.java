@@ -1,5 +1,7 @@
 package pl.tbns.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,12 +40,26 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String showRegister(Model model) {
         model.addAttribute("user", new User());
-        return "user-register";
+        return "register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String doRegister(@ModelAttribute("user") User user) {
         userService.cteateUser(user);
-        return "user-register";
+        return "redirect:register?success=true";
+    }
+    
+    @RequestMapping("/account")
+    public String account(Model model, Principal principal){
+     //   String userName = principal.getName();
+     //   model.addAttribute("user", userService.findOneWithBlogs(userName));
+        return "user-detail";
+    }
+
+    @RequestMapping(value = "/account", method = RequestMethod.POST)
+    public String doAddBlog(Principal principal) {
+   //     String name = principal.getName();
+   //     blogService.save(blog, name);
+        return "redirect:/account";
     }
 }

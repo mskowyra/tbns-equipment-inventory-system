@@ -25,6 +25,8 @@ public class User {
     private String email;
 
     private String password;
+    
+    private boolean status;
 
     @ManyToMany
     @JoinTable
@@ -62,7 +64,15 @@ public class User {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
+    public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public List<Role> getRoles() {
         return roles;
     }
 
