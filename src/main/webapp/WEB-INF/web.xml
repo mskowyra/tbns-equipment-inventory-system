@@ -9,7 +9,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <param-name>contextConfigLocation</param-name>
     <param-value>
 			classpath:spring/application-context.xml
-			classpath:spring/hibernate-context.xml								
+			classpath:spring/spring-data-context.xml								
     </param-value>
   </context-param>
   
