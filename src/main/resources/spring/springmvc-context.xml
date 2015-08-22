@@ -21,9 +21,7 @@
 	
 	<!-- Tiles Configurations -->
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-        <property name="definitions">
-            <value>classpath:tiles/*.xml</value>
-        </property>
+        <property name="definitions" value="classpath:tiles/*.xml"/>        
     </bean>
 	<!-- Tiles view resolver 	-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">

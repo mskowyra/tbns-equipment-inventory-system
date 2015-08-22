@@ -26,6 +26,12 @@
         <put-attribute name="current" value="user-detail"/>
     </definition>
     
+    <definition name="account" extends="common">
+        <put-attribute name="title" value="User account"/>
+        <put-attribute name="body" value="/WEB-INF/views/my-account.jsp"/>
+        <put-attribute name="current" value="account"/>
+    </definition>
+    
     <definition name="register" extends="common">
         <put-attribute name="title" value="User registration"/>
         <put-attribute name="body" value="/WEB-INF/views/register.jsp"/>

@@ -10,6 +10,7 @@
 	<context:annotation-config />
 	<!-- Activates scanning of @Repository and @Service -->
 	<context:component-scan base-package="pl.tbns" />
+
 	
 
 </beans>

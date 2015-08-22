@@ -31,9 +31,13 @@ public class UserServiceImpl implements UserService{
 		return userDao.findAll();
 	}
 
-	public User findOneUser(Long id) {
+	public User findOneUserById(Long id) {
 		return userDao.findOne(id);
 	}
+	
+	public User findOneUserByName(String username) {
+        return userDao.findByName(username);
+    }
 
 	public void cteateUser(User user) {
 		user.setStatus(true);

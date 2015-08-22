@@ -12,7 +12,8 @@ import pl.tbns.model.User;
 public interface UserService {
 
 	public List<User> findAllUser();
-	public User findOneUser(Long id);
+	public User findOneUserById(Long id);
+	public User findOneUserByName(String username);
 	void cteateUser(User user);
 	void removeUser(Long id);
 	
