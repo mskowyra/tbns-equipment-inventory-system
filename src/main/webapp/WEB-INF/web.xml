@@ -7,11 +7,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   
 <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>
-			classpath:spring/application-context.xml
-			classpath:spring/spring-security-context.xml	
-			classpath:spring/spring-data-dev.xml		
-    </param-value>
+    <param-value>classpath*:spring/spring-*.xml</param-value>
   </context-param>
   
   <servlet>
@@ -21,7 +17,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
      </servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring/springmvc-context.xml</param-value>
+      <param-value>classpath:spring/spring-mvc-context.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -87,6 +83,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   
   <context-param>
         <param-name>spring.profiles.default</param-name>
-        <param-value>prod</param-value> <!--  dev or prod  -->
+        <param-value>dev</param-value> <!--  dev or prod  -->
    </context-param>
 </web-app>

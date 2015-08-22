@@ -11,6 +11,12 @@
 	<!-- Activates scanning of @Repository and @Service -->
 	<context:component-scan base-package="pl.tbns" />
 
-	
+	 <beans profile="dev">
+        <import resource="classpath:spring/store/spring-data-dev.xml"/>
+    </beans>
+
+    <beans profile="prod">
+        <import resource="classpath:spring/store/spring-data-prod.xml"/>
+    </beans>
 
 </beans>
