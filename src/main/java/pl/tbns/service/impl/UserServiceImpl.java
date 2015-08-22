@@ -48,4 +48,7 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	public void removeUser(Long id) {
+	    userDao.delete(id);
+	}
 }

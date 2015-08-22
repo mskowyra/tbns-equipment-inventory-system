@@ -62,4 +62,10 @@ public class UserController {
    //     blogService.save(blog, name);
         return "redirect:/account";
     }
+    
+    @RequestMapping("/users/remove/{id}")
+    public String removeUser(@PathVariable Long id) {
+            userService.removeUser(id);
+            return "redirect:/users";
+        }
 }
