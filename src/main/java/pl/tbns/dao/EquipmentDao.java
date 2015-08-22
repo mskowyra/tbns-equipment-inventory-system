@@ -8,6 +8,6 @@ import pl.tbns.model.Equipment;
  * @date Aug 22, 2015 11:23:44 PM
  * 
  */
-public interface EquipmentsDao extends JpaRepository<Equipment, Long>{
+public interface EquipmentDao extends JpaRepository<Equipment, Long>{
 
 }
