@@ -13,4 +13,6 @@ public interface UserService {
 
 	public List<User> findAllUser();
 	public User findOneUser(Long id);
+	void cteateUser(User user);
+	
 }

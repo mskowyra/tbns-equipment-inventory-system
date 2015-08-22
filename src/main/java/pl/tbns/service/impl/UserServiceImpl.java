@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService{
 		return userDao.findOne(id);
 	}
 
+	public void cteateUser(User user) {
+		userDao.save(user);
+		
+	}
+
 }
