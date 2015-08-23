@@ -2,6 +2,8 @@ package pl.tbns.controller;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,20 +26,25 @@ import pl.tbns.service.UserService;
 @RequestMapping("/register")
 public class RegisterController {
 
+	private Logger logger = LoggerFactory.getLogger(RegisterController.class);
+	
     @Autowired
     private UserService userService;
 
     @RequestMapping
     public String showRegister(Model model) {
-        model.addAttribute("user", new User());
+    	logger.info("Display register form site");
+    	model.addAttribute("user", new User());
         return "register";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String doRegister(@Valid @ModelAttribute("user") User user, BindingResult result) {
         if (result.hasErrors()) {
+        	logger.info("Error registri user");
             return "register";
         }
+        logger.info("Correct register user");
         userService.cteateUser(user);
         return "redirect:register?success=true";
     }
@@ -46,6 +53,7 @@ public class RegisterController {
     @ResponseBody
     public String available(@RequestParam String username) {
         Boolean available = userService.findOneUserByName(username) == null;
+        logger.info("is-avaiable");
         return available.toString();
     }
 }

@@ -11,8 +11,18 @@
     <definition name="loginTemplate" template="/WEB-INF/views/templates/loginTemplate.jsp">
     </definition>
     
+    <definition name="adminTemplate" template="/WEB-INF/views/templates/adminTemplate.jsp">          
+    	<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp"/>
+    	<put-attribute name="menu" value="/WEB-INF/views/templates/left-menu.jsp"/>
+    </definition>
+    
     <definition name="login.index" extends="loginTemplate">
     	 <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+    </definition>
+    
+    <definition name="admin.index" extends="adminTemplate">
+    	 <put-attribute name="body" value="/WEB-INF/views/admin/index.jsp" />
+    	 <put-attribute name="current" value="index"/>
     </definition>
 
     <definition name="index" extends="common">
