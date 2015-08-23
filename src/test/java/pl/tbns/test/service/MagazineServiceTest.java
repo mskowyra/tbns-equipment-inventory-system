@@ -20,7 +20,7 @@ import pl.tbns.service.MagazineService;
  * @author Szymon Iwański
  *
  */
-
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/spring/application-context-test.xml", "/spring/hibernate-context-test.xml" })
 public class MagazineServiceTest extends TestCase{

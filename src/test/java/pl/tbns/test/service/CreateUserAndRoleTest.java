@@ -21,7 +21,7 @@ import pl.tbns.model.Role;
 import pl.tbns.model.User;
 
 
-//@Ignore
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/spring/spring-application-context-test.xml", "/spring/store/hibernate-context-test.xml" })
 public class CreateUserAndRoleTest extends TestCase{

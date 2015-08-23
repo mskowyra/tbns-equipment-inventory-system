@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ import pl.tbns.service.EquipmentService;
  * @author Maciej Skowyra
  *
  */
-
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/spring/application-context-test.xml", "/spring/hibernate-context-test.xml" })
+@ContextConfiguration(locations = { "/spring/spring-application-context.xml", "/spring/store/spring-data-dev.xml" })
 public class EquipmentServiceTest extends TestCase{
 	
 	@Autowired

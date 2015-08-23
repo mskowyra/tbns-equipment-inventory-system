@@ -9,11 +9,15 @@
 <global-method-security pre-post-annotations="enabled"/>
 
     <http use-expressions="true">
-        <intercept-url pattern="/users**" access="hasRole('ROLE_ADMIN')" />
+      	<intercept-url pattern="/" access="hasRole('ROLE_USER')" />
+  		<intercept-url pattern="/users**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/account/**" access="hasRole('ROLE_USER')" />
-        <form-login login-page="/login" />
-        <logout logout-url="/logout"/>
+        <form-login login-page="/login" 
+        			default-target-url="/" 	
+        			authentication-failure-url="/login?error" />
+        
+        <logout logout-url="/logout" logout-success-url="/login?logout" /> <!--  /j_spring_security_logout  -->
     </http>
 
     <authentication-manager>

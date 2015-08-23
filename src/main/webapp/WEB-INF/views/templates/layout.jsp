@@ -32,11 +32,15 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                	<security:authorize access="!isAuthenticated()">
                     <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/"/>'>Home</a></li>
+                    </security:authorize>
                     <security:authorize access="hasRole('ROLE_ADMIN')">
                         <li class="${current == 'users' ? 'active' : ''}"><a href="<spring:url value="/users"/>">Users</a>
                     </security:authorize>
+                    <security:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value="/register"/>">Register</a>
+                     </security:authorize>
                     <security:authorize access="!isAuthenticated()">
                         <li class="${current == 'login' ? 'active' : ''}"><a href="<spring:url value="/login"/>">Login</a></li>
                     </security:authorize>
