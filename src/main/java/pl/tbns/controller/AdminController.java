@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,7 +26,7 @@ public class AdminController {
     private UserService userService;
 
     @RequestMapping
-    public String users(Model model) {
+    public String users(ModelMap model) {
     	logger.info("Display list users site");
         model.addAttribute("users", userService.findAllUser());
         return "admin.users.list";

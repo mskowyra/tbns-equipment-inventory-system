@@ -5,12 +5,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
@@ -43,10 +47,23 @@ public class User {
     @JoinTable
     private List<Role> roles;
 
+    
     @Temporal(TemporalType.TIMESTAMP)
-	private Date DateCreate;
+	private Date dateCreate;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date DateUpdate;
+	private Date dateUpdate;
+	
+	@PrePersist
+	  protected void onCreate() {
+		dateCreate = new Date();
+	  }
+
+	  @PreUpdate
+	  protected void onUpdate() {
+		dateUpdate = new Date();
+	  }
+	
+	
 	
 	@OneToMany(mappedBy = "sourceUser")
 	private Set<TransmissionHistory> transmisHistFromSource = new HashSet<TransmissionHistory>();
@@ -119,19 +136,19 @@ public class User {
 	}
 
 	public Date getDateCreate() {
-		return DateCreate;
+		return dateCreate;
 	}
 
 	public void setDateCreate(Date dateCreate) {
-		DateCreate = dateCreate;
+		this.dateCreate = dateCreate;
 	}
 
 	public Date getDateUpdate() {
-		return DateUpdate;
+		return dateUpdate;
 	}
 
 	public void setDateUpdate(Date dateUpdate) {
-		DateUpdate = dateUpdate;
+		this.dateUpdate = dateUpdate;
 	}
 
 	public Set<TransmissionHistory> getTransmisHistFromSource() {

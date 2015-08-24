@@ -17,7 +17,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Responsive Hover Table</h3>
+                  <h3 class="box-title">Lista urzytkowników</h3>
                   <div class="box-tools">
                     <div class="input-group" style="width: 150px;">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
@@ -31,11 +31,14 @@
                   <table class="table table-hover">
                     <tr>
                       <th>ID</th>
-                      <th>Name</th>
+                      <th>Login</th>
                       <th>Status</th>
-                      <th>FirstName</th>
-                      <th>LastName</th>
-                      <th>Options</th>
+                      <th>Imię</th>
+                      <th>Nazwisko</th>  
+                      <th>E-mail</th>                    
+                      <th>Data utworzenia</th>
+                      <th>Data aktualizacji</th>
+                      <th>Opcje</th>
                     </tr>
                     <c:forEach items="${users}" var="user">
                     <tr>
@@ -45,12 +48,15 @@
                         ${user.name}
                       </a>
               		  </td>
-                      <td><span class="label label-success">Approved</span></td>
+                      <td><span class="label label-success">Aktywny</span></td>
                       <td>${user.first_name}</td>
                       <td>${user.last_name}</td>
+                      <td>${user.email}</td>                       
+                      <td>${user.dateCreate}</td>
+                      <td>${user.dateUpdate}</td>
                       <td>
                 		<a href="<spring:url value="/users/remove/${user.id}"/>" class="btn btn-danger triggerRemove">
-                   		 Remove
+                   		 Usuń
               			  </a>
            			 </td>
                     </tr> 
