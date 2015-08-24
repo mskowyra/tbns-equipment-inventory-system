@@ -20,6 +20,7 @@
         <logout logout-url="/logout" logout-success-url="/login?logout" /> <!--  /j_spring_security_logout  -->
     </http>
 
+
     <authentication-manager>
         <authentication-provider>
             <password-encoder hash="bcrypt" />

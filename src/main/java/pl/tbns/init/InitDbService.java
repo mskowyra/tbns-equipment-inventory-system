@@ -38,6 +38,10 @@ public class InitDbService {
         Role roleUser = new Role();
         roleUser.setName("ROLE_USER");
         roleDao.save(roleUser);
+        
+        Role roleModerator = new Role();
+        roleModerator.setName("ROLE_MODERATOR");
+        roleDao.save(roleModerator);
 
         Role roleAdmin = new Role();
         roleAdmin.setName("ROLE_ADMIN");
@@ -45,7 +49,9 @@ public class InitDbService {
 
         User userAdmin = new User();
         userAdmin.setStatus(true);
-        userAdmin.setName("admin");        
+        userAdmin.setName("admin");  
+        userAdmin.setFirst_name("Maciej");
+        userAdmin.setLast_name("Skowyra");
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         userAdmin.setPassword(encoder.encode("admin"));
         List<Role> roles = new ArrayList<Role>();

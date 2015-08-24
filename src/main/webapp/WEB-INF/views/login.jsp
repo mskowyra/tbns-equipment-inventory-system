@@ -22,7 +22,7 @@
                         <input type="password" name="j_password" class="form-control" placeholder="Hasło" required>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="remember_me"/> Pamiętaj mnie
+                        <input type="checkbox"  name="_spring_security_remember_me" />  <p>Zapamiętaj mnie</p>
                     </div>
                     </fieldset>
                </div>
