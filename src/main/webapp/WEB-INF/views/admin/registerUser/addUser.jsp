@@ -5,24 +5,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<div class="box box-danger">
-	<div class="box-header">
-		<div class="box-body pull-left">
-			<h3 class="box-title">Options</h3>
-		</div>
-		<div class="box-body pull-right">
-			<button type="submit" class="btn btn-primary">
-				<span class="glyphicon glyphicon-ok"></span>
-				<c:out value="${formButtonLabel}" />
-			</button>
-			<button type="submit" class="btn btn-primary">
-				<span class="glyphicon glyphicon-remove"></span> CANCEL
-			</button>
-		</div>
-	</div>
-</div>
-
-
 <!-- /.box-body -->
 <div class="row">
 	<!-- left column -->
@@ -133,69 +115,10 @@
 			
 			
 			
-			<form:form method="${formMethod}" action="${formAction}"
-				commandName="user" role="form">
-				<div class="box-body">
-					<div class="form-group">
-						<form:label path="name" cssClass="control-label">Login</form:label>
-						<form:input path="name" cssClass="form-control"
-							placeholder="Login" />
-						<form:errors path="name" cssClass="alert alert-warning" />
-					</div>
-					<div class="form-group">
-						<form:label path="password" cssClass="control-label">Password</form:label>
-						<form:input path="password" cssClass="form-control"
-							placeholder="Password" />
-						<form:errors path="password" cssClass="alert alert-warning" />
-					</div>
-					<div class="form-group">
-						
-					</div>
-					<div class="form-group">
-						<form:label path="email" cssClass="control-label">First Name</form:label>
-						<form:input path="email" cssClass="form-control"
-							placeholder="First Name" />
-						<form:errors path="email" cssClass="alert alert-warning" />
-					</div>
-					<div class="form-group">
-						<form:label path="password" cssClass="control-label">Laste Name</form:label>
-						<form:input path="password" cssClass="form-control"
-							placeholder="Last Name" />
-						<form:errors path="password" cssClass="alert alert-warning" />
-					</div>
-					<div class="form-group">
-						<form:label path="password_again" cssClass="control-label">Email</form:label>
-						<form:input path="password_again" cssClass="form-control"
-							placeholder="email" />
-						<form:errors path="password_again" cssClass="alert alert-warning" />
-					</div>
-					
-	
-				</div>
+			
 				<!-- /.box-body -->
 
-				<div class="box-footer">
-				
-				<div class="box box-danger">
-	<div class="box-header">
-		<div class="box-body pull-left">
-			<h3 class="box-title">Options</h3>
-		</div>
-		<div class="box-body pull-right">
-			<button type="submit" class="btn btn-primary">
-				<span class="glyphicon glyphicon-ok"></span>
-				<c:out value="${formButtonLabel}" />
-			</button>
-			<button type="submit" class="btn btn-primary">
-				<span class="glyphicon glyphicon-remove"></span> CANCEL
-			</button>
-		</div>
-	</div>
-</div>
-				
-				
-				</div>
-			</form:form>
+			
 		</div>
 
 

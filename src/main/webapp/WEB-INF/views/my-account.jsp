@@ -5,7 +5,7 @@
 
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    New blog
+    New 
 </button>
 
 

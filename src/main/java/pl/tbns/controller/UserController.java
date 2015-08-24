@@ -27,8 +27,7 @@ public class UserController {
 	 @RequestMapping("/account")
 	    public String account(Model model, Principal principal) {
 	        String userName = principal.getName();
-	    //    model.addAttribute("blog", new Blog());
-	    //    model.addAttribute("user", userService.findOneWithBlogs(userName));
+	             model.addAttribute("user", userService.findOneUserByName(userName));
 	        return "account";
 	    }
 
@@ -43,10 +42,6 @@ public class UserController {
 	        return "redirect:/account";
 	    }
 
-	    @RequestMapping(value = "/blog/remove/{id}")
-	    public String removeBlog(@PathVariable Long id) {
-	      
-	        return "redirect:/account";
-	    }
+	    
 
 }

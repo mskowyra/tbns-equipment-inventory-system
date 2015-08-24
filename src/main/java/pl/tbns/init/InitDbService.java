@@ -14,8 +14,6 @@ import pl.tbns.dao.RoleDao;
 import pl.tbns.dao.UserDao;
 import pl.tbns.model.Role;
 import pl.tbns.model.User;
-
-
 /**
  * @author Maciej Skowyra & Szymon Iwanski	
  * @date Aug 22, 2015 3:49:30 PM
@@ -31,8 +29,6 @@ public class InitDbService {
     @Autowired
     private UserDao userDao;
 
-    
-
     @PostConstruct
     public void init() {
         Role roleUser = new Role();
@@ -47,6 +43,27 @@ public class InitDbService {
         roleAdmin.setName("ROLE_ADMIN");
         roleDao.save(roleAdmin);
 
+        User userUser = new User();
+        userUser.setStatus(true);
+        userUser.setName("user");
+        BCryptPasswordEncoder encoder2 = new BCryptPasswordEncoder();
+        userUser.setPassword(encoder2.encode("user"));
+        List<Role> rolesUser = new ArrayList<Role>();
+        rolesUser.add(roleUser);
+        userUser.setRoles(rolesUser);
+        userDao.save(userUser);
+        
+        User userModerator = new User();
+        userModerator.setStatus(true);
+        userModerator.setName("moderator");
+        BCryptPasswordEncoder encoder3 = new BCryptPasswordEncoder();
+        userModerator.setPassword(encoder3.encode("moderator"));
+        List<Role> rolesModerator = new ArrayList<Role>();
+        rolesModerator.add(roleUser);
+        rolesModerator.add(roleModerator);
+        userModerator.setRoles(rolesModerator);
+        userDao.save(userModerator);
+        
         User userAdmin = new User();
         userAdmin.setStatus(true);
         userAdmin.setName("admin");  
@@ -56,6 +73,7 @@ public class InitDbService {
         userAdmin.setPassword(encoder.encode("admin"));
         List<Role> roles = new ArrayList<Role>();
         roles.add(roleAdmin);
+        roles.add(roleModerator);
         roles.add(roleUser);
         userAdmin.setRoles(roles);
         userDao.save(userAdmin);

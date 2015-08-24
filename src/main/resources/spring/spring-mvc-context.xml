@@ -19,6 +19,7 @@
 	<!-- Define static resource location -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
+	
 	<!-- Tiles Configurations -->
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions" value="classpath:tiles/*.xml"/>        

@@ -28,7 +28,7 @@ public class AdminController {
     public String users(Model model) {
     	logger.info("Display list users site");
         model.addAttribute("users", userService.findAllUser());
-        return "admin.index";
+        return "admin.users.list";
     }
 
     @RequestMapping("/{id}")
