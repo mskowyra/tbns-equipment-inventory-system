@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import pl.tbns.service.UserService;
 
@@ -25,11 +27,21 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping
-    public String users(ModelMap model) {
+    
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView users(@RequestParam(value = "success", required = false) String success) {
     	logger.info("Display list users site");
-        model.addAttribute("users", userService.findAllUser());
-        return "admin.users.list";
+        
+    	ModelAndView model = new ModelAndView();
+    	if (success != null) {
+    		logger.info("Zarejstowano urzykowników wyœwietl liste");
+    		model.addObject("msg", "Zarejstowa³eœ nowego urzytkownika.");
+    		
+    	}
+       model.addObject("users", userService.findAllUser());
+       model.setViewName("admin.users.list");  
+      
+       return model;
     }
 
     @RequestMapping("/{id}")
@@ -46,3 +58,4 @@ public class AdminController {
     }
 
 }
+

@@ -7,7 +7,7 @@
 <c:set var="formAction"
 	value="${empty param.formAction ? '' : param.formAction}" />
 <c:set var="formButtonLabel"
-	value="${empty param.formButtonLabel ? 'SAVE' : param.formButtonLabel}" />
+	value="${empty param.formButtonLabel ? 'Zapisz' : param.formButtonLabel}" />
 
 <!-- /.box-body -->
 <div class="row">
@@ -16,45 +16,50 @@
 		<!-- general form elements -->
 		<div class="box box-primary">
 			<div class="box-header">
-				<h3 class="box-title">Creat New User</h3>
+				<h3 class="box-title">Dodawanie nowego urzytkownika</h3>
 			</div>
 			<!-- /.box-header -->
 			<!-- form start -->
-			<form:form method="${formMethod}" action="${formAction}" commandName="user" role="form">
-				<div class="box-body">
+			<form:form method="${formMethod}" action="${formAction}" commandName="user" role="form" cssClass="registrationForm">
+				<div class="box-body form-register">
+					<!--
+					<c:if test="${param.success eq true}">
+        				    <div class="alert alert-success">Rejstracja powiodła się!</div>
+        			</c:if>
+					-->		
 					<div class="form-group">
 						<form:label path="name" cssClass="col-sm-2  control-label">Login</form:label>
 						<div class="col-sm-10">
 						<form:input path="name" cssClass="form-control" placeholder="Login" />
-						<form:errors path="name" cssClass="alert alert-warning" />
+						<form:errors path="name" cssClass="form-control alert alert-warning" />
 					</div>
 					</div>
 					<div class="form-group">
-						<form:label path="password" cssClass="col-sm-2 control-label">Password</form:label>
+						<form:label path="password" cssClass="col-sm-2 control-label">Hasło</form:label>
 						<div class="col-sm-10">
-						<form:input path="password" cssClass="form-control"	placeholder="Password" />
+						<form:input path="password" cssClass="form-control"	placeholder="Hasło" />
 						<form:errors path="password" cssClass="alert alert-warning" />
 					</div>
 					</div>
 					<div class="form-group">
-						<form:label path="password" cssClass="col-sm-2 control-label">Password</form:label>
+						<form:label path="password" cssClass="col-sm-2 control-label">Powtórz hasło</form:label>
 						<div class="col-sm-10">
-						<form:input path="password" name="password_again" id="password_again"  cssClass="form-control" placeholder="Password" />						
+						<form:input path="password" name="password_again" id="password_again"  cssClass="form-control" placeholder="Powtórz hasło" />						
 					</div>
 					</div>					
 					<div class="form-group">
-						<form:label path="first_name" cssClass="col-sm-2 control-label">First Name</form:label>
+						<form:label path="first_name" cssClass="col-sm-2 control-label">Imię</form:label>
 						<div class="col-sm-10">
 						<form:input path="first_name" cssClass="form-control"
-							placeholder="First Name" />
+							placeholder="Imię" />
 						<form:errors path="first_name" cssClass="alert alert-warning" />
 					</div>
 					</div>
 					<div class="form-group">
-						<form:label path="last_name" cssClass="col-sm-2 control-label">Laste Name</form:label>
+						<form:label path="last_name" cssClass="col-sm-2 control-label">Nazwisko</form:label>
 						<div class="col-sm-10">
 						<form:input path="last_name" cssClass="form-control"
-							placeholder="Last Name" />
+							placeholder="Nazwisko" />
 						<form:errors path="last_name" cssClass="alert alert-warning" />
 					</div>
 					</div>
@@ -73,26 +78,12 @@
 				<span class="glyphicon glyphicon-ok"></span>
 				<c:out value="${formButtonLabel}" />
 			</button>			
-		</div>
-					
-					
-				</div>
-				</form:form>
-				<!-- /.box-body -->
-
-
-
-
-
-
-
-
-
-
-
-			</div>
-			
-		</div>
+		</div>				
+	</div>
+</form:form>
+<!-- /.box-body -->
+</div>
+</div>
 
 
 	
@@ -116,11 +107,51 @@
 <!-- /.row -->
 
 
-<!-- Bootstrap WYSIHTML5 -->
-<!-- bootstrap wysihtml5 - text editor -->
 <script type="text/javascript">
-	$(function() {
-		//bootstrap WYSIHTML5 - text editor
-		$(".textarea").wysihtml5();
-	});
-</script>
+var $ = jQuery;
+    $(document).ready(function () { 
+    	$(".registrationForm").validate(
+                {
+                    rules: {
+                        name: {
+                            required: true,
+                            minlength: 3,
+                            remote: {
+                                url: "<spring:url value='/register/is-available' />",
+                                type: "get",
+                                data: {
+                                    username: function () {
+                                        return $("#name").val();
+                                    }
+                                }
+                            }
+                        },
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        password: {
+                            required: true,
+                            minlength: 5
+                        },
+                        confirmPassword: {
+                            required: true,
+                            minlength: 5,
+                            equalTo: "#password"
+                        }
+                    },
+                    highlight: function (element) {
+                        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                    },
+                    unhighlight: function (element) {
+                        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    },
+                    messages: {
+                        name: {
+                            remote: "Such username already exists!"
+                        }
+                    }
+                }
+        )
+    });
+    </script>

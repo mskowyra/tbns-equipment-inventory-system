@@ -11,9 +11,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>TBNS | Panel</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+     <!-- jQuery 2.1.4 -->
+    <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -37,7 +40,7 @@
     <link rel="stylesheet" href="/resources/plugins/daterangepicker/daterangepicker-bs3.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
+	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -90,9 +93,19 @@
 
     <!-- jQuery 2.1.4 -->
     <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+   
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+      
+      <script type="text/javascript" src="/resources/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/resources/jquery.validate/1.13.1/messages_pl.js"></script>
+     
+    <script type="text/javascript" src="/resources/js/placeholders.min.js"></script>
+    <script type="text/javascript" src="/resources/js/wow.min.js"></script>
+    <script type="text/javascript" src="/resources/js/custom.js"></script>
+      
+           
     <script>
       $.widget.bridge('uibutton', $.ui.button);
     </script>
@@ -125,5 +138,9 @@
     <script src="/resources/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/resources/dist/js/demo.js"></script>
+    
+    
+    
+   
   </body>
 </html>

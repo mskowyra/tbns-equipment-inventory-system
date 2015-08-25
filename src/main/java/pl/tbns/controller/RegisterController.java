@@ -46,7 +46,7 @@ public class RegisterController {
         }
         logger.info("Correct register user");
         userService.cteateUser(user);
-        return "redirect:register?success=true";
+        return "redirect:users?success";
     }
     
     @RequestMapping("/is-available")

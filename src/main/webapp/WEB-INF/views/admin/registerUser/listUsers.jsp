@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.nav-tabs a:first').tab('show'); // Select first tab
@@ -15,12 +15,21 @@
 
 <div class="row">
             <div class="col-xs-12">
-              <div class="box">
+              <div class="box">                          
+                    <c:if test="${not empty msg}">
+                    <div class="box-body">     
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4>	<i class="icon fa fa-check"></i> Sukces!</h4>
+                    ${msg}
+                  </div>
+                   </div>
+                	</c:if>               
                 <div class="box-header">
                   <h3 class="box-title">Lista urzytkowników</h3>
                   <div class="box-tools">
-                    <div class="input-group" style="width: 150px;">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+                    <div class="input-group" style="width: 150px;">              
+                     <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
@@ -29,6 +38,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
+                    <security:authentication property="principal.username" var="logged_username"/>
                     <tr>
                       <th>ID</th>
                       <th>Login</th>
@@ -55,9 +65,13 @@
                       <td>${user.dateCreate}</td>
                       <td>${user.dateUpdate}</td>
                       <td>
-                		<a href="<spring:url value="/users/remove/${user.id}"/>" class="btn btn-danger triggerRemove">
-                   		 Usuń
-              			  </a>
+                      
+                      <a <c:if test="${user.name.equals(logged_username)}"> disabled="true" </c:if>
+                                        href="<spring:url value="/users/remove/${user.id}"/>"
+                                        class="btn btn-danger triggerRemove">
+                                    Usuń
+                                </a>              
+                		
            			 </td>
                     </tr> 
                     </c:forEach>                  
