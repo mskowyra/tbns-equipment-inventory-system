@@ -5,9 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
@@ -46,7 +44,6 @@ public class User {
     @ManyToMany
     @JoinTable
     private List<Role> roles;
-
     
     @Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreate;
@@ -62,9 +59,7 @@ public class User {
 	  protected void onUpdate() {
 		dateUpdate = new Date();
 	  }
-	
-	
-	
+		
 	@OneToMany(mappedBy = "sourceUser")
 	private Set<TransmissionHistory> transmisHistFromSource = new HashSet<TransmissionHistory>();
 	

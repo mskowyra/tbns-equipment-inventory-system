@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService{
         roles.add(roleDao.findByName("ROLE_USER"));
         user.setRoles(roles);
 
-        userDao.save(user);
+        userDao.saveAndFlush(user);
 		
 	}
 

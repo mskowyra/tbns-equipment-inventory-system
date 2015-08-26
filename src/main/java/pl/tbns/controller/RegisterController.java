@@ -35,14 +35,14 @@ public class RegisterController {
     public String showRegister(Model model) {
     	logger.info("Display register form site");
     	model.addAttribute("user", new User());
-        return "register";
+        return "user.register";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String doRegister(@Valid @ModelAttribute("user") User user, BindingResult result) {
         if (result.hasErrors()) {
         	logger.info("Error registri user");
-            return "register";
+            return "user.register";
         }
         logger.info("Correct register user");
         userService.cteateUser(user);
