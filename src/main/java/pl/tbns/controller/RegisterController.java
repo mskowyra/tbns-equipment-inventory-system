@@ -23,7 +23,7 @@ import pl.tbns.service.UserService;
  * 
  */
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/registered")
 public class RegisterController {
 
 	private Logger logger = LoggerFactory.getLogger(RegisterController.class);
@@ -49,7 +49,7 @@ public class RegisterController {
         return "redirect:users?success";
     }
     
-    @RequestMapping("/is-available")
+    @RequestMapping("/is-availableed")
     @ResponseBody
     public String available(@RequestParam String username) {
         Boolean available = userService.findOneUserByName(username) == null;

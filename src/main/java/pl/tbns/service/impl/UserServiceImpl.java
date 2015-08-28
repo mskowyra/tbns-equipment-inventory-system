@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService{
     }
 
 	public void cteateUser(User user) {
-		user.setStatus(true);
+	
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
 
@@ -48,9 +48,10 @@ public class UserServiceImpl implements UserService{
         roles.add(roleDao.findByName("ROLE_USER"));
         user.setRoles(roles);
 
-        userDao.saveAndFlush(user);
+        userDao.save(user);
 		
-	}
+	}	
+	
 
 	public void removeUser(Long id) {
 	    userDao.delete(id);

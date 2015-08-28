@@ -28,12 +28,12 @@ public ModelAndView login(
 	ModelAndView model = new ModelAndView();
 	if (error != null) {
 		logger.info("Display login error site!");
-		model.addObject("error", "B≥Ídna nazwa urzytkownika lub has≥o!");
+		model.addObject("error", "B≈Çƒôdna nazwa urzytkownika lub has≈Ço!");
 	}
 
 	if (logout != null) {
 		logger.info("Display login correct site!");
-		model.addObject("msg", "Zosta≥eú poprawnie wylogowany z systemu.");
+		model.addObject("msg", "Zosta≈Çe≈õ poprawnie wylogowany z systemu.");
 	}
 	model.setViewName("login.index");
 

@@ -54,7 +54,7 @@ public class InitDbService {
         userDao.save(userUser);
         
         User userModerator = new User();
-        userModerator.setStatus(true);
+        userModerator.setStatus(false);
         userModerator.setName("moderator");
         BCryptPasswordEncoder encoder3 = new BCryptPasswordEncoder();
         userModerator.setPassword(encoder3.encode("moderator"));

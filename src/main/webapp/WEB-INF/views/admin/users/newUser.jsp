@@ -4,9 +4,10 @@
 
 
 
-	<c:import url="/WEB-INF/views/admin/registerUser/registriForm.jsp">
-		<c:param name="user" value="${user}" />
-		<c:param name="formValidate" value="/register/is-available" />	
+<c:import url="/WEB-INF/views/admin/users/registriFormUser.jsp">
+	<c:param name="user" value="${user}" />
+	<c:param name="formAction" value="/admin/users/register" />
+	<c:param name="formValidate" value="/admin/users/is-available" />	
 </c:import> 
 
 <script>

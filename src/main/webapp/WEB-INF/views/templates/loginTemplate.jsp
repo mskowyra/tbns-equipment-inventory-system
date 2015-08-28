@@ -3,53 +3,48 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>AdminPanel | TBNS</title>
-<meta
-	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
-	name='viewport'>
-<!-- bootstrap 3.3.1 -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
-<!-- Font Awesome Icons -->
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css" />
-<!-- Ionicons -->
-<link
-	href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css"
-	rel="stylesheet" type="text/css" />
-<!-- Theme style -->
-<link rel="stylesheet" type="text/css" href="resources/css/AdminLTE.css"/>
-<!-- bootstrap wysihtml5 - text editor -->
-<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TBNS Panel | Logowanie</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/resources/dist/css/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/resources/plugins/iCheck/square/blue.css">
 
-<!-- jQuery 2.0.2 -->
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<!-- AdminLTE App -->
-<script type="text/javascript" src="<c:url value='/resources/js/AdminLTE/app.js'/>"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
-	type="text/javascript"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script
-	src="resources/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"
-	type="text/javascript"></script>
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-</head>
-    <body class="bg-black">
-<div class="form-box" id="login-box">
-        <tiles:insertAttribute name="body" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="hold-transition login-page">
+   
+    <tiles:insertAttribute name="body" />
 
-       
-</div>
-    </body>
+    <!-- jQuery 2.1.4 -->
+    <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="/resources/plugins/iCheck/icheck.min.js"></script>
+    <script>
+      $(function () {
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+      });
+    </script>
+  </body>
 </html>

@@ -65,21 +65,26 @@
 					<c:forEach items="${users}" var="user">
 						<tr>
 							<td>${user.id}</td>
-							<td><a href="<spring:url value="/users/${user.id}"/>">
+							<td><a href="<spring:url value="/admin/users/${user.id}"/>">
 									${user.name} </a></td>
-							<td><span class="label label-success">Aktywny</span></td>
+							<td>
+							<c:choose>
+							<c:when test="${user.status == true}"><span class="label label-success ">Aktywny</span></c:when>
+    						<c:otherwise><span class="label label-danger">Nieaktywny</span></c:otherwise>
+					        </c:choose>
+					     	</td>
 							<td>${user.first_name}</td>
 							<td>${user.last_name}</td>
 							<td>${user.email}</td>
 							<td>${user.dateCreate}</td>
-							<td>${user.dateUpdate}</td>
+							<td>${user.dateUpdate}</td> 
 							<td>							
-									<a href="<spring:url value="/users/edit/${user.id}"/>" 
+									<a href="<spring:url value="/admin/users/edit/${user.id}"/>" 
 									class="btn btn-xs btn-info"> Szczegóły </a>
 								
 							 	
 							 		<a <c:if test="${user.name.equals(logged_username)}"> disabled="true" </c:if>
-									href="<spring:url value="/users/remove/${user.id}"/>"
+									href="<spring:url value="/admin/users/remove/${user.id}"/>"
 								class="btn btn-xs btn-danger triggerRemove"> Usuń </a>
 															 								    			
 					    	</td>

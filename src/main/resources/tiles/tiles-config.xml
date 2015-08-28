@@ -4,54 +4,49 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
         
 <tiles-definitions>
-    <definition name="common" template="/WEB-INF/views/templates/layout.jsp">
-        <put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp"/>
+    <definition name="loginTemplate" template="/WEB-INF/views/templates/loginTemplate.jsp">
     </definition>
     
-    <definition name="loginTemplate" template="/WEB-INF/views/newTemplates/loginTemplate.jsp">
-    </definition>
-    
-    <definition name="panelTemplate" template="/WEB-INF/views/newTemplates/panelTemplate.jsp">          
-    	<put-attribute name="header" value="/WEB-INF/views/newTemplates/header.jsp"/>
-    	<put-attribute name="menu" value="/WEB-INF/views/newTemplates/left-menu.jsp"/>
-    	<put-attribute name="footer" value="/WEB-INF/views/newTemplates/footer.jsp"/>
-    	<put-attribute name="control-sidebar" value="/WEB-INF/views/newTemplates/control-sidebar.jsp"/>
+    <definition name="panelTemplate" template="/WEB-INF/views/templates/panelTemplate.jsp">          
+    	<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp"/>
+    	<put-attribute name="menu" value="/WEB-INF/views/templates/left-menu.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp"/>
+    	<put-attribute name="control-sidebar" value="/WEB-INF/views/templates/control-sidebar.jsp"/>
     </definition>
     
     <definition name="login.index" extends="loginTemplate">
-    	 <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+    	 <put-attribute name="body" value="/WEB-INF/views/login/login.jsp" />
     </definition>
     
-    <definition name="admin.users.list" extends="panelTemplate">
-    	  <put-attribute name="title" value="Users"/>
-    	 <put-attribute name="body" value="/WEB-INF/views/admin/registerUser/listUsers.jsp" />
+    <definition name="admin.list.users" extends="panelTemplate">
+    	  <put-attribute name="title" value="Users list"/>
+    	 <put-attribute name="body" value="/WEB-INF/views/admin/users/listUsers.jsp" />
     	 <put-attribute name="current" value="users"/>
     </definition>
 
-    <definition name="user.register" extends="panelTemplate">
+    <definition name="admin.register.user" extends="panelTemplate">
         <put-attribute name="title" value="User registration"/>
-        <put-attribute name="body" value="/WEB-INF/views/admin/registerUser/new.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/newUser.jsp"/>
         <put-attribute name="current" value="register"/>
     </definition>
         
+     <definition name="admin.edit.user" extends="panelTemplate">
+        <put-attribute name="title" value="User edit"/>
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/editUser.jsp"/>
+        <put-attribute name="current" value="user-edit"/>
+    </definition>
+    
+    <definition name="admin.detail.user" extends="panelTemplate">
+        <put-attribute name="title" value="User detail"/>
+        <put-attribute name="body" value="/WEB-INF/views/admin/users/detailsUser.jsp"/>
+        <put-attribute name="current" value="user-detail"/>
+    </definition>        
+    
     <definition name="index" extends="panelTemplate">
         <put-attribute name="title" value="TBNS"/>
         <put-attribute name="body" value="/WEB-INF/views/index.jsp"/>
         <put-attribute name="current" value="index"/>
-    </definition>
-   
-
-    <definition name="user-detail" extends="panelTemplate">
-        <put-attribute name="title" value="User detail"/>
-        <put-attribute name="body" value="/WEB-INF/views/user-detail.jsp"/>
-        <put-attribute name="current" value="user-detail"/>
-    </definition>
-    
-    <definition name="user.edit" extends="panelTemplate">
-        <put-attribute name="title" value="User detail"/>
-        <put-attribute name="body" value="/WEB-INF/views/admin/registerUser/edit.jsp"/>
-        <put-attribute name="current" value="user-edit"/>
-    </definition>
+    </definition>      
     
     
     <definition name="account" extends="panelTemplate">
