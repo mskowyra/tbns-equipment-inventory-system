@@ -5,10 +5,14 @@
 	<c:import url="/WEB-INF/views/admin/users/registriFormUser.jsp">
 		<c:param name="user" value="${user}" />
 		<c:param name="formMethod" value="post" />
-		<c:param name="formAction" value="/admin/users/edit" />
+		<c:param name="formAction" value="/admin/users/edit/${user.id}" />
 		<c:param name="formButtonLabel" value="Aktualizuj" />
-		<c:param name="formValidate" value=" " />	
+		
 	</c:import>
 	
 	
-	
+	<script>
+	$('.confirm').click(function () {
+		$('form').submit();
+	});
+</script>

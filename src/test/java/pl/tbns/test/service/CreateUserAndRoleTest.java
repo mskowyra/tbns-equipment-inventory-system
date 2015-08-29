@@ -5,6 +5,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,11 +20,12 @@ import pl.tbns.dao.RoleDao;
 import pl.tbns.dao.UserDao;
 import pl.tbns.model.Role;
 import pl.tbns.model.User;
+import pl.tbns.service.UserService;
 
 
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/spring/spring-application-context-test.xml", "/spring/store/hibernate-context-test.xml" })
+@ContextConfiguration(locations = { "/spring/spring-application-context.xml", "/spring/store/spring-data-prod.xml" })
 public class CreateUserAndRoleTest extends TestCase{
 
 	@Autowired
@@ -31,30 +33,43 @@ public class CreateUserAndRoleTest extends TestCase{
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private UserService userService;
 
+
+	
 	@Test
 	@Transactional
-//	@Rollback(false)
-	public void init(){
-		Role roleUser = new Role();
-        roleUser.setName("ROLE_USER");
-        roleDao.save(roleUser);
-
-        Role roleAdmin = new Role();
-        roleAdmin.setName("ROLE_ADMIN");
-        roleDao.save(roleAdmin);
-
-        List<Role> roles = new ArrayList<Role>();
-        roles.add(roleAdmin);
-        roles.add(roleUser);
-        
-        User userAdmin = new User();
-        userAdmin.setStatus(true);
-        userAdmin.setName("admin");        
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        userAdmin.setPassword(encoder.encode("admin"));
-        userAdmin.setRoles(roles);
-        userDao.save(userAdmin);
-        
+	@Rollback(false)
+	public void testUpdateUser(){
+		User user = userDao.findByName("admin");
+		
+		user.setName("TEST");
+		user.setEmail("maciej.skowyra.pl");
+		user.setPassword("password");
+		userService.createUser(user);
+		
+	//	assertEquals("TEST", userDao.findByName("admin").getName().toString());
+		assertSame(user, userDao.findByName("TEST"));
+		
 	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	public void testCreateUser(){
+				
+		User userUser = new User();
+       
+        userUser.setName("user2");
+        userUser.setPassword("user");            
+        userService.createUser(userUser);
+		
+	//	assertEquals("TEST", userDao.findByName("admin").getName().toString());
+		assertSame(userUser, userDao.findByName("user2"));
+	
+	}
+	
+	
 }

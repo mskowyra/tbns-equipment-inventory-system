@@ -3,9 +3,14 @@ package pl.tbns.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.tbns.dao.RoleDao;
 import pl.tbns.dao.UserDao;
@@ -20,8 +25,10 @@ import pl.tbns.service.UserService;
  */
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService{
 
+	private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 	@Autowired
 	private UserDao userDao;
 	@Autowired
@@ -39,19 +46,18 @@ public class UserServiceImpl implements UserService{
         return userDao.findByName(username);
     }
 
-	public void cteateUser(User user) {
-	
+	public void createUser(User user) {
+		user.setStatus(true);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
 
         List<Role> roles = new ArrayList<Role>();
         roles.add(roleDao.findByName("ROLE_USER"));
         user.setRoles(roles);
-
+        logger.info("Utworzono nowego urzytkownika");
         userDao.save(user);
 		
-	}	
-	
+	}
 
 	public void removeUser(Long id) {
 	    userDao.delete(id);

@@ -34,7 +34,7 @@
         <property name="jpaProperties">
             <map>
                 <entry key="hibernate.show_sql" value="false"/>
-                <entry key="hibernate.hbm2ddl.auto" value="update"/>
+                <entry key="hibernate.hbm2ddl.auto" value="create"/> <!-- update or create -->
                 <entry key="hibernate.connection.CharSet" value="utf8"/>
                 <entry key="hibernate.connection.characterEncoding" value="utf8"/>
                 <entry key="hibernate.connection.useUnicode" value="true"/>

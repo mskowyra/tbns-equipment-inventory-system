@@ -71,9 +71,10 @@ public class AdminUsersController {
         	logger.info("Error registri user");
             return "admin.register.user";
         }
-        logger.info("Correct register user");
-        userService.cteateUser(user);
-        return "redirect:?success";
+        
+        userService.createUser(user);
+        logger.info("Correct register user");        
+        return "redirect:/admin/users?success";
     }
     
     @RequestMapping("/is-available")
@@ -91,7 +92,6 @@ public class AdminUsersController {
     	return "admin.detail.user";
     }
     
- 
 
     @RequestMapping("/remove/{id}")
     public String removeUser(@PathVariable Long id) {
@@ -114,8 +114,8 @@ public class AdminUsersController {
             return "admin.register.user";
         }
         logger.info("Correct register user");
-        userService.cteateUser(user);
-        return "redirect:?success";
+        userService.createUser(user);
+        return "redirect:/admin/users?success";
     }
     
     

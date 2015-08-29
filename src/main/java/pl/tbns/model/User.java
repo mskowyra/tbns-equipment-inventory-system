@@ -39,7 +39,7 @@ public class User {
     private String password;
     private String first_name;
 	private String last_name;
-    private boolean status = true;
+    private boolean status;
 
     @ManyToMany
     @JoinTable
@@ -164,18 +164,5 @@ public class User {
 		this.transmisHistFormDest = transmisHistFormDest;
 	}
 	
-	@Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (id == null || obj == null || getClass() != obj.getClass())
-            return false;
-        User that = (User) obj;
-        return id.equals(that.id);
-    }
-    @Override
-    public int hashCode() {
-        return id == null ? 0 : id.hashCode();
-    }
-   
+	   
 }
