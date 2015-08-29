@@ -37,7 +37,8 @@ public class AdminUsersController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView listUser(
     		@RequestParam(value = "success", required = false) String success , 
-    		@RequestParam(value = "remove", required = false) String remove) {
+    		@RequestParam(value = "remove", required = false) String remove,
+    		@RequestParam(value = "edited", required = false) String edited) {
     	
     	logger.info("Display list users site");
         
@@ -50,6 +51,11 @@ public class AdminUsersController {
     	if (remove != null) {
     		logger.info("Usunięto urzykownika, wyświetl liste");
     		model.addObject("msg", "Usunięto urzytkownika!");
+    		
+    	}
+    	if (edited != null) {
+    		logger.info("Usunięto urzykownika, wyświetl liste");
+    		model.addObject("msg", "Edytowano dane urzytkownika.");
     		
     	}
        model.addObject("users", userService.findAllUser());
@@ -115,7 +121,7 @@ public class AdminUsersController {
         }
         logger.info("Correct register user");
         userService.createUser(user);
-        return "redirect:/admin/users?success";
+        return "redirect:/admin/users?edited";
     }
     
     

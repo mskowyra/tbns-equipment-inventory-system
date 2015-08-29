@@ -69,7 +69,7 @@
 									${user.name} </a></td>
 							<td>
 							<c:choose>
-							<c:when test="${user.status == true}"><span class="label label-success ">Aktywny</span></c:when>
+							<c:when test="${user.status == true}"><span class="label label-success ">   Aktywny  </span></c:when>
     						<c:otherwise><span class="label label-danger">Nieaktywny</span></c:otherwise>
 					        </c:choose>
 					     	</td>

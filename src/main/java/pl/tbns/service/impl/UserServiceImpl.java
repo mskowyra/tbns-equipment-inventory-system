@@ -55,11 +55,22 @@ public class UserServiceImpl implements UserService{
         roles.add(roleDao.findByName("ROLE_USER"));
         user.setRoles(roles);
         logger.info("Utworzono nowego urzytkownika");
-        userDao.save(user);
+        userDao.saveAndFlush(user);
 		
+	}
+	
+	public void saveUserAdmin(User user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodedPassword = encoder.encode(user.getPassword());
+		userDao.updateAdminPassword(encodedPassword);
+		userDao.updateAdminName(user.getName());
 	}
 
 	public void removeUser(Long id) {
 	    userDao.delete(id);
+	}
+	
+	public User findAdmin() {
+		return userDao.findAdmin();
 	}
 }

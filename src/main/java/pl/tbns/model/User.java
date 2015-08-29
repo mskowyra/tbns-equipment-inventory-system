@@ -40,6 +40,8 @@ public class User {
     private String first_name;
 	private String last_name;
     private boolean status;
+    private long phone;
+    
 
     @ManyToMany
     @JoinTable
@@ -104,6 +106,14 @@ public class User {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public long getPhone() {
+		return phone;
+	}
+
+	public void setPhone(long phone) {
+		this.phone = phone;
 	}
 
 	public List<Role> getRoles() {

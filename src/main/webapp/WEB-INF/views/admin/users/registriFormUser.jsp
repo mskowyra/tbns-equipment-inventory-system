@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <c:set var="formButtonLabel"
-	value="${empty param.formButtonLabel ? '  Zapisz' : param.formButtonLabel}" />
+	value="${empty param.formButtonLabel ? 'Zapisz' : param.formButtonLabel}" />
 
 <!-- /.box-body -->
 <div class="row">
@@ -13,6 +13,7 @@
 		<!-- general form elements -->
 		<div class="box box-primary">
 			<div class="box-header">
+				<i class="glyphicon glyphicon-user"></i>
 				<h3 class="box-title">Dodawanie nowego urzytkownika</h3>
 			</div>
 			<!-- /.box-header -->
@@ -20,35 +21,74 @@
 			<form:form commandName="user" cssClass="form-horizontal form-register ">
 				<div class="box-body form-register">
 					
-					<div class="form-group">
+					<div class="form-group has-feedback">
 						<label for="name" class="col-xs-3 control-label">Login:</label>
-						<div class="col-xs-8">
+						<div class="input-group col-xs-8">
 							<form:input path="name" cssClass="form-control"	placeholder="Login" />
-							<form:errors path="name" type="password" />
+							 <span class="input-group-addon"><i class="fa fa-user"></i></span>
+							<form:errors path="name"  />							
 						</div>
 					</div>
 										
-					<div class="form-group">
+					<div class="form-group has-feedback">
 						
 						  <label for="email" class="col-xs-3 control-label">Email:</label>
-						<div class="col-xs-8">
+						<div class="input-group col-xs-8">
 							<form:input path="email" cssClass="form-control" placeholder="Email" />
+							 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 							<form:errors path="email" cssClass="alert alert-warning" />
 						</div>
 					</div>
-					<div class="form-group">	
+					<div class="form-group has-feedback">	
 						<label for="password" class="col-xs-3 control-label">Hasło:</label>
-						<div class="col-xs-8">
+						<div class="input-group col-xs-8">
 							<form:input path="password" type="password" cssClass="form-control" placeholder="Hasło"	 />
 							<form:errors path="password" type="password"  />
+							<span class="input-group-addon"><i class="fa fa-lock"></i></span>							
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group has-feedback">
 						<label for="password" class="col-xs-3 control-label">Hasło:</label>
-						<div class="col-xs-8">
+						<div class="input-group col-xs-8">
 							<input type="password" name="password_again" id="password_again" class="form-control" placeholder="Powtórz hasło" />
+							<span class="input-group-addon"><i class="fa fa-lock"></i></span>	
 						</div>
 					</div>	
+					
+					<div class="form-group has-feedback">
+						
+					</div>
+					
+					<div class="form-group has-feedback">
+						<label for="name" class="col-xs-3 control-label">Imię:</label>
+						<div class="input-group col-xs-8">
+							<form:input path="first_name" cssClass="form-control"	placeholder="Imię" />
+							<form:errors path="first_name" />							
+						</div>
+					</div>
+					
+					<div class="form-group has-feedback">
+						<label for="last_name" class="col-xs-3 control-label">Nazwisko:</label>
+						<div class="input-group col-xs-8">
+							<form:input path="first_name" cssClass="form-control"	placeholder="Nazwisko" />
+							<form:errors path="first_name" />							
+						</div>
+					</div>
+					
+					<div class="form-group has-feedback">
+						<label for="phone" class="col-xs-3 control-label">Telefon:</label>
+						<div class="input-group col-xs-8">
+							<form:input path="phone" cssClass="form-control" placeholder="Telefon" />
+							<form:errors path="phone" />							
+						</div>
+					</div>
+					<!-- checkbox -->
+					<div class="form-group has-feedback">
+						<label for="phone" class="col-xs-3 control-label">Typ urzytkownika:</label>
+		                    <label class="checkbox-inline "><input type="checkbox" value="">USER</label>
+							<label class="checkbox-inline "><input type="checkbox" value="">MODERATOR</label>
+							<label class="checkbox-inline "><input type="checkbox" value="">ADMINISTRATOR</label>
+					</div>		
 
 				<div class="box-body pull-right">
 						<button type="submit" class="btn btn-large btn-primary">
@@ -67,50 +107,3 @@
 	<!-- /.col-->
 </div>
 <!-- ./row -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".form-register").validate(
-                {
-                    rules: {
-                        name: {
-                            required: true,
-                            minlength: 3,
-                            remote :  {
-                                url: "<spring:url value='/admin/users/is-available' />",
-                                type: "get",
-                                data : {
-                                    username: function(){
-                                        return $("#name").val();
-                                    }
-                                }
-                            }
-                        },
-                        email: {
-                            required: true,
-                            email: true
-                        },
-                        password: {
-                            required: true,
-                            minlength: 5
-                        },
-                        password_again: {
-                            required: true,
-                            minlength: 5,
-                            equalTo: "#password"
-                        }
-                    },
-                    highlight: function(element) {
-                        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-                    },
-                    unhighlight: function(element) {
-                        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-                    },
-                    messages: {
-                        name: {
-                            remote: "Such username already exists!"
-                        }
-                    }
-                }
-        )
-    });
-</script>
