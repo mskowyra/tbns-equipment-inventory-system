@@ -1,6 +1,7 @@
 package pl.tbns.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import pl.tbns.model.EquipmentsType;
 
 /**
@@ -10,4 +11,8 @@ import pl.tbns.model.EquipmentsType;
  */
 public interface EquipmentsTypeDao extends JpaRepository<EquipmentsType, Long>{
 
+	public EquipmentsType getEquipmentsTypeLazyLoadById(Long id);
+
+	
+	
 }

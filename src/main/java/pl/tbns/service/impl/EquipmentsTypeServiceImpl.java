@@ -34,10 +34,11 @@ public class EquipmentsTypeServiceImpl implements EquipmentsTypeService{
 		return this.equipmentsTypeDao.getOne(id);
 	}
 
-	public EquipmentsType findEquipmentsTypeById(Long id) {
-		return this.equipmentsTypeDao.getOne(id);
+	public EquipmentsType findEquipmentsNoLazyLoadByIdWithoutEquipment(Long id) {
+		return this.equipmentsTypeDao.getEquipmentsTypeLazyLoadById(id);
 	}
-
+	
+	
 	public void modifyEquipmentsType(EquipmentsType equipmentsType) {
 		this.equipmentsTypeDao.saveAndFlush(equipmentsType);
 	}

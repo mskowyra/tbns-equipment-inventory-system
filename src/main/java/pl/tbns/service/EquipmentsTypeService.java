@@ -18,6 +18,6 @@ public interface EquipmentsTypeService {
 	public void createEquipmentsType(EquipmentsType equipmentsType);
 	public void modifyEquipmentsType(EquipmentsType equipmentsType);
 	public void deleteEqiupmentsTypeById(Long id);
-	public EquipmentsType findEquipmentsTypeById(Long id);
+	public EquipmentsType findEquipmentsNoLazyLoadByIdWithoutEquipment(Long id);	
 	public List<EquipmentsType> findAllEquipmentsType();
 }
