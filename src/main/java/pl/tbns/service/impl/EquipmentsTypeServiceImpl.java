@@ -1,5 +1,7 @@
 package pl.tbns.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +40,10 @@ public class EquipmentsTypeServiceImpl implements EquipmentsTypeService{
 
 	public void modifyEquipmentsType(EquipmentsType equipmentsType) {
 		this.equipmentsTypeDao.saveAndFlush(equipmentsType);
+	}
+
+	@Override
+	public List<EquipmentsType> findAllEquipmentsType() {
+		return equipmentsTypeDao.findAll();
 	}
 }

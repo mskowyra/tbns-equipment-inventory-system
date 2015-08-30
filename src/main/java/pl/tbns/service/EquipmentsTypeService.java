@@ -3,6 +3,8 @@
  */
 package pl.tbns.service;
 
+import java.util.List;
+
 import pl.tbns.model.EquipmentsType;
 
 /**
@@ -17,4 +19,5 @@ public interface EquipmentsTypeService {
 	public void modifyEquipmentsType(EquipmentsType equipmentsType);
 	public void deleteEqiupmentsTypeById(Long id);
 	public EquipmentsType findEquipmentsTypeById(Long id);
+	public List<EquipmentsType> findAllEquipmentsType();
 }

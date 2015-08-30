@@ -11,6 +11,12 @@
 			$("#modalRemove .removeBtn").attr("href", $(this).attr("href"));
 			$("#modalRemove").modal();
 		})
+		$(".alert-success").alert();		
+		window.setTimeout(function() {
+		    $(".alert-success").fadeTo(500, 0).slideUp(1000, function(){
+		        $(this).remove(); 
+		    });
+		}, 4000);
 	});
 </script>
 

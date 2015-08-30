@@ -63,10 +63,10 @@
                  <i class="fa fa-angle-left pull-right"></i>                
               </a>
               <ul class="treeview-menu">
+              	<li><a href="/equipment/type"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>
               	<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')">
-                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
+                <li><a href="/equipment/type?success"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
                 </security:authorize>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>
                 <security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')">
                 <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Odrzucone</a></li>
                 <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Akceptowane</a></li>
@@ -77,14 +77,14 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-folder"></i>
-                <span>Grupy narzędzi</span>
+                <span>Typy narzędzi</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
               	<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')">
-                <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
+                <li><a href="/equipment/type/create"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
                 </security:authorize>
-                <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>                
+                <li><a href="/equipment/type"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>                
               </ul>
             </li>
             <li class="treeview">

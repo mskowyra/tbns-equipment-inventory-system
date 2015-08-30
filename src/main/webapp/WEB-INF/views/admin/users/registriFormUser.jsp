@@ -60,7 +60,7 @@
 					</div>
 					
 					<div class="form-group has-feedback">
-						<label for="name" class="col-xs-3 control-label">Imię:</label>
+						<label for="first_name" class="col-xs-3 control-label">Imię:</label>
 						<div class="input-group col-xs-8">
 							<form:input path="first_name" cssClass="form-control"	placeholder="Imię" />
 							<form:errors path="first_name" />							
@@ -70,8 +70,8 @@
 					<div class="form-group has-feedback">
 						<label for="last_name" class="col-xs-3 control-label">Nazwisko:</label>
 						<div class="input-group col-xs-8">
-							<form:input path="first_name" cssClass="form-control"	placeholder="Nazwisko" />
-							<form:errors path="first_name" />							
+							<form:input path="last_name" cssClass="form-control"	placeholder="Nazwisko" />
+							<form:errors path="last_name" />							
 						</div>
 					</div>
 					

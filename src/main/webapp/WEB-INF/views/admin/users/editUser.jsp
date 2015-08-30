@@ -6,11 +6,9 @@
 		<c:param name="user" value="${user}" />
 		<c:param name="formMethod" value="post" />
 		<c:param name="formAction" value="/admin/users/edit/${user.id}" />
-		<c:param name="formButtonLabel" value="Aktualizuj" />
-		
+		<c:param name="formButtonLabel" value="Aktualizuj" />		
 	</c:import>
-	
-	
+		
 <script type="text/javascript">
     $(document).ready(function () {
         $(".form-register").validate(

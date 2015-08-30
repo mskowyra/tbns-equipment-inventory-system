@@ -58,7 +58,11 @@ public class UserServiceImpl implements UserService{
         userDao.saveAndFlush(user);
 		
 	}
+	public void removeUser(Long id) {
+	    userDao.delete(id);
+	}
 	
+	/*
 	public void saveUserAdmin(User user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPassword = encoder.encode(user.getPassword());
@@ -66,11 +70,10 @@ public class UserServiceImpl implements UserService{
 		userDao.updateAdminName(user.getName());
 	}
 
-	public void removeUser(Long id) {
-	    userDao.delete(id);
-	}
-	
 	public User findAdmin() {
 		return userDao.findAdmin();
 	}
+
+		
+	*/
 }

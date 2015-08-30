@@ -54,7 +54,7 @@ public class AdminUsersController {
     		
     	}
     	if (edited != null) {
-    		logger.info("Usunięto urzykownika, wyświetl liste");
+    		logger.info("Edytowano urzykownika, wyświetl liste");
     		model.addObject("msg", "Edytowano dane urzytkownika.");
     		
     	}
