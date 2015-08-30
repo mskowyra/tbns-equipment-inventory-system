@@ -63,9 +63,9 @@
                  <i class="fa fa-angle-left pull-right"></i>                
               </a>
               <ul class="treeview-menu">
-              	<li><a href="/equipment/type"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>
+              	<li><a href="/equipments/"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>
               	<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')">
-                <li><a href="/equipment/type?success"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
+                <li><a href="/equipments/create"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
                 </security:authorize>
                 <security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')">
                 <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Odrzucone</a></li>
@@ -82,9 +82,9 @@
               </a>
               <ul class="treeview-menu">
               	<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')">
-                <li><a href="/equipment/type/create"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
+                <li><a href="/equipments/type/create"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
                 </security:authorize>
-                <li><a href="/equipment/type"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>                
+                <li><a href="/equipments/type"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>                
               </ul>
             </li>
             <li class="treeview">

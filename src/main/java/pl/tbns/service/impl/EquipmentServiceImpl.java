@@ -34,8 +34,19 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public Equipment getEquipmentById(Long id) {
 		return this.equipmentDao.getOne(id);
 	}
-
-	public void createEquipment(Equipment equipment, Long equipmentsTypeId,
+	
+	@Override
+	public List<Equipment> findAllEquipment() {
+		return equipmentDao.findAll();
+	}
+	
+	@Override
+	public Equipment createEquipment(Equipment equipment) {
+		return equipmentDao.saveAndFlush(equipment);
+		
+	}
+	
+	public void createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId,
 			Long magazineId) {
 
 		EquipmentsType equipmentsType = equipmentsTypeDao.getOne(equipmentsTypeId);
@@ -90,6 +101,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public Equipment findEquipmentById(Long id) {
 		return this.equipmentDao.getOne(id);
 	}
-	
+
+		
 
 }

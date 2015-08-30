@@ -10,7 +10,7 @@
 
     <http use-expressions="true">
       	<intercept-url pattern="/" access="hasRole('ROLE_USER')" />
-      	<intercept-url pattern="/equipment/**" access="hasRole('ROLE_USER')" />
+      	<intercept-url pattern="/equipments/**" access="hasRole('ROLE_USER')" />
       	<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/account/**" access="hasRole('ROLE_USER')" />

@@ -65,16 +65,16 @@
 					<c:forEach items="${equipmentsType}" var="equipmentsType">
 						<tr>						
 							<td>
-								<a href="<spring:url value="/equipment/type/${equipmentsType.id}"/>">
+								<a href="<spring:url value="/equipments/type/${equipmentsType.id}"/>">
 									${equipmentsType.name} 
 								</a>
 							</td>
 							<td>${equipmentsType.description}</td>
 							<td>								
-									<a href="<spring:url value="/equipment/type/edit/${equipmentsType.id}"/>" 
+									<a href="<spring:url value="/equipments/type/edit/${equipmentsType.id}"/>" 
 									class="btn btn-xs btn-info"> Szczegóły </a>
 																
-									<a href="<spring:url value="/equipment/type/remove/${equipmentsType.id}"/>"
+									<a href="<spring:url value="/equipments/type/remove/${equipmentsType.id}"/>"
 								class="btn btn-xs btn-danger triggerRemove"> Usuń </a>
 															 								    			
 					    	</td>
