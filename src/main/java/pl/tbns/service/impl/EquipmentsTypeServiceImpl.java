@@ -43,8 +43,9 @@ public class EquipmentsTypeServiceImpl implements EquipmentsTypeService{
 		this.equipmentsTypeDao.saveAndFlush(equipmentsType);
 	}
 
-	@Override
+	
 	public List<EquipmentsType> findAllEquipmentsType() {
 		return equipmentsTypeDao.findAll();
 	}
+		
 }

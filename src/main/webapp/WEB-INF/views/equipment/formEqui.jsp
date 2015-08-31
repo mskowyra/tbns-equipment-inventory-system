@@ -46,7 +46,22 @@
 							 
 							<form:errors path="equipmentsNumber"  />							
 						</div>
-					</div>					
+					</div>	
+					
+					<div class="form-group has-feedback">
+						<label for="equipmentsType" class="col-xs-3 control-label">Typ</label>
+						<div class="input-group col-xs-8">					
+						
+							<form:select path="equipmentsType.id" cssClass="form-control"	required="True" >
+				<form:option value="">Wybierz typ urządzenia</form:option>
+				<c:forEach items="${equipmentsTypes}" var="equipmentsType">
+					<form:option value="${equipmentsType.id}">${equipmentsType.name}</form:option>
+				</c:forEach>
+			</form:select>
+			<form:errors path="equipmentsType.name" cssClass="alert alert-warning" />
+							
+						</div>
+					</div>				
 										
 					<div class="form-group has-feedback">
 						

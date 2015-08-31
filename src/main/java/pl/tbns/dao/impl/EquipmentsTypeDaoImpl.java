@@ -1,8 +1,6 @@
 package pl.tbns.dao.impl;
 
-
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
-
 
 import pl.tbns.dao.EquipmentsTypeDao;
 import pl.tbns.model.EquipmentsType;
@@ -22,6 +20,6 @@ public abstract class EquipmentsTypeDaoImpl  extends HibernateDaoSupport impleme
 			getHibernateTemplate().initialize(equipmentsType.getEquipment());
 	return equipmentsType;
 	}
-		
+	
 	
 }

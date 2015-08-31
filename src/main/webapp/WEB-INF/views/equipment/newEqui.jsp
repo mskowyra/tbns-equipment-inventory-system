@@ -5,6 +5,6 @@
 
 <c:import url="/WEB-INF/views/equipment/formEqui.jsp">
    	<c:param name="equipment" value="${equipment}" />
-   	
+   	<c:param name="equipmentsTypes" value="${equipmentsTypes}" />
 	
 </c:import> 

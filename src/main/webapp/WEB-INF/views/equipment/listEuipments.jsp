@@ -68,7 +68,7 @@
 								<a href="<spring:url value="/equipments/${equipment.id}"/>">
 									${equipment.name} 
 								</a>
-							</td>
+							</td>							
 							<td>${equipment.serialNumber}</td>
 							<td>${equipment.equipmentsNumber}</td>
 							<td>${equipment.description}</td>
@@ -123,3 +123,4 @@
 		</div>
 	</div>
 </div>
+

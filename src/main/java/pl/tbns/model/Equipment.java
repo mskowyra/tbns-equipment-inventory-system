@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -37,7 +38,7 @@ public class Equipment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "equipment_id", unique = true, nullable = false)
-	private long id;
+	private Long id;
 	
 	@Column(name = "equipmentName")
 	@Size(min = 5, max = 100, message = "Nazwa nie może być krótsza niż 5 i dłuższa niż 100 znaków!")
@@ -55,13 +56,9 @@ public class Equipment implements Serializable {
 	@Size(min = 0, max = 2000)
 	private String description;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "equipmentsType_equipment",
-			joinColumns = {@JoinColumn(name = "equipmentsType_id")},
-			inverseJoinColumns = {@JoinColumn(name = "equipment_id")}
-			)
-	private List<EquipmentsType> equipmentsType;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "equipmentsType_id", nullable = false)
+	private EquipmentsType equipmentsType;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
@@ -82,7 +79,7 @@ public class Equipment implements Serializable {
 	}
 
 	public Equipment(String name, String serialNumber, String equipmentsNumber,
-			String description, List<EquipmentsType> equipmentsType) {
+			String description,EquipmentsType equipmentsType) {
 		super();
 		this.name = name;
 		this.serialNumber = serialNumber;
@@ -91,11 +88,13 @@ public class Equipment implements Serializable {
 		this.equipmentsType = equipmentsType;
 	}
 
-	public long getId() {
+	
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -131,11 +130,11 @@ public class Equipment implements Serializable {
 		this.description = description;
 	}
 
-	public List<EquipmentsType> getEquipmentsType() {
+	public EquipmentsType getEquipmentsType() {
 		return equipmentsType;
 	}
 
-	public void setEquipmentsType(List<EquipmentsType> equipmentsType) {
+	public void setEquipmentsType(EquipmentsType equipmentsType) {
 		this.equipmentsType = equipmentsType;
 	}
 
@@ -167,17 +166,8 @@ public class Equipment implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
-		result = prime
-				* result
-				+ ((equipmentsNumber == null) ? 0 : equipmentsNumber.hashCode());
-		result = prime * result
-				+ ((equipmentsType == null) ? 0 : equipmentsType.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((serialNumber == null) ? 0 : serialNumber.hashCode());
 		return result;
 	}
 
@@ -190,37 +180,28 @@ public class Equipment implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Equipment other = (Equipment) obj;
-		if (description == null) {
-			if (other.description != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (equipmentsNumber == null) {
-			if (other.equipmentsNumber != null)
-				return false;
-		} else if (!equipmentsNumber.equals(other.equipmentsNumber))
-			return false;
-		if (equipmentsType == null) {
-			if (other.equipmentsType != null)
-				return false;
-		} else if (!equipmentsType.equals(other.equipmentsType))
-			return false;
-		if (id != other.id)
+		} else if (!id.equals(other.id))
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (serialNumber == null) {
-			if (other.serialNumber != null)
-				return false;
-		} else if (!serialNumber.equals(other.serialNumber))
-			return false;
 		return true;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Equipment [id=" + id + ", name=" + name + ", serialNumber="
+				+ serialNumber + ", equipmentsNumber=" + equipmentsNumber
+				+ ", description=" + description + ", equipmentsType="
+				+ equipmentsType + ", magazine=" + magazine + ", DateCreated="
+				+ DateCreated + ", traansmisHistory=" + traansmisHistory + "]";
+	}
 
+	
 	
 }

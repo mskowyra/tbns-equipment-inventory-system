@@ -10,7 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -30,7 +30,7 @@ public class EquipmentsType implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "equipmentsType_id", nullable = false)
-	private long id;
+	private Long id;
 
 	@Column(name = "equipmentsTypeName")
 	@Size(min = 5, max = 100, message = "Nazwa nie może być krótsza niż 5 i dłuższa niż 100 znaków!")
@@ -40,11 +40,11 @@ public class EquipmentsType implements Serializable {
 	@Size(min = 0, max = 2000)
 	private String description;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "equipmentsType")
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "equipmentsType")
 	private List<Equipment> equipment = new ArrayList<Equipment>(0);
 
 	public EquipmentsType() {
-		
 	}
 
 	public EquipmentsType(String name, String description,
@@ -54,11 +54,11 @@ public class EquipmentsType implements Serializable {
 		this.equipment = equipment;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -94,7 +94,7 @@ public class EquipmentsType implements Serializable {
 				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result
 				+ ((equipment == null) ? 0 : equipment.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -118,7 +118,10 @@ public class EquipmentsType implements Serializable {
 				return false;
 		} else if (!equipment.equals(other.equipment))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -126,5 +129,12 @@ public class EquipmentsType implements Serializable {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "EquipmentsType [id=" + id + ", name=" + name + ", description="
+				+ description + ", equipment=" + equipment + "]";
+	}
+		
 }

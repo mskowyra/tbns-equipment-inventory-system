@@ -41,56 +41,42 @@ public class EquipmentServiceImpl implements EquipmentService {
 	}
 	
 	@Override
-	public Equipment createEquipment(Equipment equipment) {
-		return equipmentDao.saveAndFlush(equipment);
-		
+	public Equipment createEquipment(Equipment equipment, Long equipmentsTypeId) {
+		EquipmentsType equipmentsType = equipmentsTypeDao.getOne(equipmentsTypeId);
+		equipment.setEquipmentsType(equipmentsType);		
+		return equipmentDao.saveAndFlush(equipment);		
 	}
 	
 	public void createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId,
 			Long magazineId) {
-
-		EquipmentsType equipmentsType = equipmentsTypeDao.getOne(equipmentsTypeId);
-		List<EquipmentsType> newEquipmentsTypes = new ArrayList<EquipmentsType>();
-
+		EquipmentsType equipmentsType = equipmentsTypeDao.getOne(equipmentsTypeId);		
 		Magazine magazine = magazineDao.getOne(magazineId);
 		List<Magazine> newMagazine = new ArrayList<Magazine>();
-
+		
 		newMagazine.add(magazine);
-		newEquipmentsTypes.add(equipmentsType);
-
 		equipment.setMagazine(newMagazine);
-		equipment.setEquipmentsType(newEquipmentsTypes);
-
+		equipment.setEquipmentsType(equipmentsType);
 		equipmentDao.save(equipment);
-
 	}
 
 	public void modifyEquipment(Equipment equipment, Long equipmentsTypeId,
 			Long magazineId) {
-
-		EquipmentsType equipmentsType = equipmentsTypeDao.getOne(equipmentsTypeId);
-		List<EquipmentsType> newEquipmentsTypes = new ArrayList<EquipmentsType>();
-
+		EquipmentsType equipmentsType = equipmentsTypeDao.getOne(equipmentsTypeId);		
 		Magazine magazine = magazineDao.getOne(magazineId);
 		List<Magazine> newMagazine = new ArrayList<Magazine>();
 
-		newMagazine.add(magazine);
-		newEquipmentsTypes.add(equipmentsType);
-
+		newMagazine.add(magazine);		
 		equipment.setMagazine(newMagazine);
-		equipment.setEquipmentsType(newEquipmentsTypes);
-
+		equipment.setEquipmentsType(equipmentsType);
 		equipmentDao.saveAndFlush(equipment);
 	}
 	
-	public void modifyForHistoryTransmissionEquipment(Equipment equipment, Long magazineId) {
-		
+	public void modifyForHistoryTransmissionEquipment(Equipment equipment, Long magazineId) {		
 		Magazine magazine = magazineDao.getOne(magazineId);
 		List<Magazine> newMagazine = new ArrayList<Magazine>();
 
 		newMagazine.add(magazine);
-		equipment.setMagazine(newMagazine);
-		
+		equipment.setMagazine(newMagazine);		
 		equipmentDao.saveAndFlush(equipment);
 	}
 
@@ -101,7 +87,6 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public Equipment findEquipmentById(Long id) {
 		return this.equipmentDao.getOne(id);
 	}
-
 		
 
 }

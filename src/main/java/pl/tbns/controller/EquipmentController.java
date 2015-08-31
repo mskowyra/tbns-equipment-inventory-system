@@ -1,5 +1,7 @@
 package pl.tbns.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -9,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,19 +34,23 @@ public class EquipmentController {
 	private EquipmentsTypeService equipmentsTypeService;
 	
 	
-	@RequestMapping(value="/create", method = RequestMethod.GET)
+	@RequestMapping(value="/create", method = RequestMethod.GET)				
 	public String createEquipment(Model model){
+		
+		List<EquipmentsType> equipmentsTypeList = equipmentsTypeService.findAllEquipmentsType();
+		model.addAttribute("equipmentsTypes", equipmentsTypeList);
+	//	model.addAttribute("equipmentsType", equipmentsTypeService.findAllEquipmentsType());
 		model.addAttribute("equipment", new Equipment());
 		return "equipment.create";
 	}
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
-	public String saveEquipment(@Valid @ModelAttribute("equipmentsType") Equipment equipment, BindingResult result) {
+	public String saveEquipment(@Valid @ModelAttribute("equipment") Equipment equipment, @RequestParam("equipmentsType.id") Long equipmentsType, BindingResult result) {
         if (result.hasErrors()) {
         	logger.info("Error registri equipment");
             return "equipment.create";
-        }        
-        equipmentService.createEquipment(equipment);
+        }  
+        equipmentService.createEquipment(equipment, equipmentsType);
         logger.info("Correct register equipments");        
         return "redirect:/equipments?success";
     } 

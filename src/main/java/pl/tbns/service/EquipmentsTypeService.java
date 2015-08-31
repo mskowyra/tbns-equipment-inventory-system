@@ -20,4 +20,5 @@ public interface EquipmentsTypeService {
 	public void deleteEqiupmentsTypeById(Long id);
 	public EquipmentsType findEquipmentsNoLazyLoadByIdWithoutEquipment(Long id);	
 	public List<EquipmentsType> findAllEquipmentsType();
+	
 }

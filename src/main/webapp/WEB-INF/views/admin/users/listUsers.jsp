@@ -39,9 +39,9 @@
 					<!-- <a href="<spring:url value="/register"/>" class="btn btn-primary btn-sm"> Dodaj urzytkownika </a>   -->
 					<!-- <a href="<spring:url value="/register"/>" class="btn btn-default btn-sm"> Dodaj urzytkownika </a>	 -->
 					<div class="input-group" style="width: 150px;">
-						
+						<div class="search-query-sf"></div>
 						<input type="text" name="table_search"
-							class="form-control input-sm pull-right" placeholder="Search">
+							class="form-control input-sm pull-right" id="system-search" name="q"  placeholder="Search" required>
 						<div class="input-group-btn">															
 							<button class="btn btn-sm btn-default">
 								<i class="fa fa-search"></i>
@@ -54,7 +54,7 @@
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body table-responsive no-padding">
-				<table class="table table-hover">
+				<table class="table table-hover table-list-search">
 					<security:authentication property="principal.username"
 						var="logged_username" />
 					<tr>
@@ -123,3 +123,51 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    var activeSystemClass = $('.list-group-item.active');
+
+    //something is entered in search form
+    $('#system-search').keyup( function() {
+       var that = this;
+        // affect all table rows on in systems table
+        var tableBody = $('.table-list-search tbody');
+        var tableRowsClass = $('.table-list-search tbody tr');
+        $('.search-sf').remove();
+        tableRowsClass.each( function(i, val) {
+        
+            //Lower text for case insensitive
+            var rowText = $(val).text().toLowerCase();
+            var inputText = $(that).val().toLowerCase();
+            if(inputText != '')
+            {
+                $('.search-query-sf').remove();
+                tableBody.prepend('<tr class="search-query-sf"><td class="text-muted" colspan="6"><div class="alert alert-info"><strong>Szukana fraza: "'
+                    + $(that).val()
+                    + '"</strong></div></td></tr>');
+            }
+            else
+            {
+                $('.search-query-sf').remove();
+            }
+
+            if( rowText.indexOf( inputText ) == -1 )
+            {
+                //hide rows
+                tableRowsClass.eq(i).hide();
+                
+            }
+            else
+            {
+                $('.search-sf').remove();
+                tableRowsClass.eq(i).show();
+            }
+        });
+        //all tr elements are hidden
+        if(tableRowsClass.children(':visible').length == 0)
+        {
+            tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6"><div class="alert alert-danger"><strong>Nie znaleziono szukanej frazy!</strong></div></td></tr>');
+        }
+    });
+});
+</script>
