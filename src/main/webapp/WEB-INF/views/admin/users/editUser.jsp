@@ -14,23 +14,7 @@
         $(".form-register").validate(
                 {
                     rules: {
-                        name: {
-                            required: false,
-                            minlength: 3,
-                            remote :  {
-                                url: "<spring:url value='/admin/users/is-available' />",
-                                type: "get",
-                                data : {
-                                    username: function(){
-                                    	if(username == $("#name")){
-                                    		return null;
-                                    	}else{
-                                        return $("#name").val();
-                                    	}
-                                    }
-                                }
-                            }
-                        },
+                        
                         email: {
                             required: true,
                             email: true

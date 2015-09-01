@@ -23,6 +23,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 
 /**
  * @author Szymon Iwanski
@@ -68,7 +70,9 @@ public class Equipment implements Serializable {
 			)
 	private List<Magazine> magazine;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, updatable=false)
 	private Date DateCreated;
 	
 	@OneToMany(mappedBy="equipment")

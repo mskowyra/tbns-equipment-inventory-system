@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService{
         roles.add(roleDao.findByName("ROLE_USER"));
         user.setRoles(roles);
         logger.info("Utworzono nowego urzytkownika");
-        userDao.saveAndFlush(user);
+        userDao.save(user);
 		
 	}
 	public void removeUser(Long id) {

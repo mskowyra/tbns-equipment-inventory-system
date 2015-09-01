@@ -59,7 +59,9 @@
 					<tr>						
 						<th>Nazwa</th>
 						<th>Numer seryjny</th>
-						<th>Numer ewidencyjny</th>						
+						<th>Numer ewidencyjny</th>
+						<th>Opis</th>		
+						<th>Data dodania</th>						
 						<th>Opcje</th>
 					</tr>
 					<c:forEach items="${equipment}" var="equipment">
@@ -72,6 +74,7 @@
 							<td>${equipment.serialNumber}</td>
 							<td>${equipment.equipmentsNumber}</td>
 							<td>${equipment.description}</td>
+							<td>${equipment.dateCreated}</td>
 							<td>								
 									<a href="<spring:url value="/equipments/edit/${equipment.id}"/>" 
 									class="btn btn-xs btn-info"> Szczegóły </a>

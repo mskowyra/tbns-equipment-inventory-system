@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,6 +18,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Email;
 
 /**
@@ -25,7 +28,7 @@ import org.hibernate.validator.constraints.Email;
  * 
  */
 @Entity
-public class User {
+public class User  {
 
     @Id
     @GeneratedValue
@@ -46,12 +49,14 @@ public class User {
     @ManyToMany
     @JoinTable
     private List<Role> roles;
-    
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, updatable=false)
 	private Date dateCreate;
+    @UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateUpdate;
-	
+	/*
 	@PrePersist
 	  protected void onCreate() {
 		dateCreate = new Date();
@@ -61,7 +66,7 @@ public class User {
 	  protected void onUpdate() {
 		dateUpdate = new Date();
 	  }
-		
+	*/	
 	@OneToMany(mappedBy = "sourceUser")
 	private Set<TransmissionHistory> transmisHistFromSource = new HashSet<TransmissionHistory>();
 	
@@ -139,7 +144,7 @@ public class User {
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
 	}
-
+	@CreationTimestamp
 	public Date getDateCreate() {
 		return dateCreate;
 	}
