@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 
 /**
@@ -73,7 +74,11 @@ public class Equipment implements Serializable {
 	@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable=false)
-	private Date DateCreated;
+	private Date dateCreated;
+	
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateUpdated;
 	
 	@OneToMany(mappedBy="equipment")
 	private Set<TransmissionHistory> traansmisHistory;
@@ -151,11 +156,19 @@ public class Equipment implements Serializable {
 	}
 
 	public Date getDateCreated() {
-		return DateCreated;
+		return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
-		DateCreated = dateCreated;
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateUpdated() {
+		return dateUpdated;
+	}
+
+	public void setDateUpdated(Date dateUpdated) {
+		this.dateUpdated = dateUpdated;
 	}
 
 	public Set<TransmissionHistory> getTraansmisHistory() {
@@ -197,15 +210,5 @@ public class Equipment implements Serializable {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Equipment [id=" + id + ", name=" + name + ", serialNumber="
-				+ serialNumber + ", equipmentsNumber=" + equipmentsNumber
-				+ ", description=" + description + ", equipmentsType="
-				+ equipmentsType + ", magazine=" + magazine + ", DateCreated="
-				+ DateCreated + ", traansmisHistory=" + traansmisHistory + "]";
-	}
-
-	
-	
+		
 }

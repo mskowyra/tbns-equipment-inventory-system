@@ -39,6 +39,9 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public List<Equipment> findAllEquipment() {
 		return equipmentDao.findAll();
 	}
+	public Equipment getEquipmenLazyLoadById(Long id){
+		return equipmentDao.getEquipmenLazyLoadById(id);
+	}
 	
 	@Override
 	public Equipment createEquipment(Equipment equipment, Long equipmentsTypeId) {

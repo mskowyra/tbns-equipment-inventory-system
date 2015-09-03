@@ -20,7 +20,16 @@
 			<!-- form start -->
 			<form:form commandName="equipment" cssClass="form-horizontal form-register ">
 				<div class="box-body form-register">
-					
+					<c:if test="${empty equipmentsTypes}">
+				<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-hidden="true">×</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Brak danych!
+						</h4>
+						Nie dodano typów narzędzi. Najpierw musisz dodać typ narzędzi aby potem dodać konkretne narzędzie.
+					</div>
+				</c:if>
 					<div class="form-group has-feedback">
 						<label for="name" class="col-xs-3 control-label">Nazwa:</label>
 						<div class="input-group col-xs-8">
@@ -51,15 +60,13 @@
 					<div class="form-group has-feedback">
 						<label for="equipmentsType" class="col-xs-3 control-label">Typ</label>
 						<div class="input-group col-xs-8">					
-						
-							<form:select path="equipmentsType.id" cssClass="form-control"	required="True" >
-				<form:option value="">Wybierz typ urządzenia</form:option>
-				<c:forEach items="${equipmentsTypes}" var="equipmentsType">
-					<form:option value="${equipmentsType.id}">${equipmentsType.name}</form:option>
-				</c:forEach>
-			</form:select>
-			<form:errors path="equipmentsType.name" cssClass="alert alert-warning" />
-							
+						<form:select path="equipmentsType.id" cssClass="form-control"	required="True" >
+								<form:option value="">Wybierz typ urządzenia</form:option>
+									<c:forEach items="${equipmentsTypes}" var="equipmentsType">
+										<form:option value="${equipmentsType.id}">${equipmentsType.name}</form:option>
+									</c:forEach>
+						</form:select>
+						<form:errors path="equipmentsType.name" cssClass="alert alert-warning" />
 						</div>
 					</div>				
 										

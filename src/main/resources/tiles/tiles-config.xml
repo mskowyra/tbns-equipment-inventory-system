@@ -73,15 +73,21 @@
     <!-- Equipment Template -->
     
     <definition name="equipment.create" extends="panelTemplate">
-        <put-attribute name="title" value="Equipments Type Create"/>
+        <put-attribute name="title" value="Equipments Create"/>
         <put-attribute name="body" value="/WEB-INF/views/equipment/newEqui.jsp"/>
         <put-attribute name="current" value="index"/>
     </definition>     
     
     <definition name="equipment.list" extends="panelTemplate">
-    	  <put-attribute name="title" value="Equipments Type List"/>
+    	  <put-attribute name="title" value="Equipments List"/>
     	 <put-attribute name="body" value="/WEB-INF/views/equipment/listEuipments.jsp" />
     	 <put-attribute name="current" value="users"/>
+    </definition>
+    
+    <definition name="equipment.edit" extends="panelTemplate">
+        <put-attribute name="title" value="Equipments  edit"/>
+        <put-attribute name="body" value="/WEB-INF/views/equipment/editEqui.jsp"/>
+        <put-attribute name="current" value="user-edit"/>
     </definition>
     
     

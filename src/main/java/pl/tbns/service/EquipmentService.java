@@ -13,6 +13,7 @@ import pl.tbns.model.Equipment;
 public interface EquipmentService {
 
 	public Equipment getEquipmentById(Long id);
+	public Equipment getEquipmenLazyLoadById(Long id);
 	public List<Equipment> findAllEquipment();
 	public Equipment createEquipment(Equipment equipment, Long equipmentsTypeId);
 	public void createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId, Long magazineId);
