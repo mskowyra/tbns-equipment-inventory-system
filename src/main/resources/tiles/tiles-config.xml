@@ -90,8 +90,18 @@
         <put-attribute name="current" value="user-edit"/>
     </definition>
     
-    
-    
+    <!-- Magazine Template -->
+    <definition name="magazine.create" extends="panelTemplate">
+        <put-attribute name="title" value="Magazine Create"/>
+        <put-attribute name="body" value="/WEB-INF/views/magazine/newMagazine.jsp"/>
+        <put-attribute name="current" value="index"/>
+    </definition>        
+       
+     <definition name="magazine.list" extends="panelTemplate">
+    	  <put-attribute name="title" value="Magazine List"/>
+    	 <put-attribute name="body" value="/WEB-INF/views/magazine/listMagazine.jsp" />
+    	 <put-attribute name="current" value="magazine-list"/>
+    </definition>
     
     <definition name="account" extends="panelTemplate">
         <put-attribute name="title" value="User account"/>

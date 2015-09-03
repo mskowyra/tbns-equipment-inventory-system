@@ -35,15 +35,12 @@
           -->
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-           
-             
-            <li>
+          <ul class="sidebar-menu">      
+           <li>
               <a href="/">
                 <i class="fa fa-th"></i> <span>Start</span> 
               </a>
-            </li>
-          	
+            </li>          	
           	<security:authorize access="hasRole('ROLE_ADMIN')">
           	<li class="treeview">
               <a href="#">
@@ -54,8 +51,7 @@
                 <li><a href="<spring:url value="/admin/users/register"/>"><i class="fa fa-circle-o"></i> Dodaj urzytkownika</a></li>
               </ul>
             </li>
-            </security:authorize>
-            
+            </security:authorize>            
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-folder"></i>
@@ -72,8 +68,7 @@
                 <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Akceptowane</a></li>
                 </security:authorize>
               </ul>
-            </li>
-                       
+            </li>                       
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-folder"></i>
@@ -95,9 +90,9 @@
               </a>
               <ul class="treeview-menu">
                 <security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')">
-                <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
+                <li><a href="/magazine/create"><i class="fa fa-circle-o"></i> Dodaj nowe</a></li>
                 </security:authorize>
-                <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>
+                <li><a href="/magazine"><i class="fa fa-circle-o"></i> Przeglądaj</a></li>
                 <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Archiwum</a></li>              
               </ul>
             </li>  

@@ -19,6 +19,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 /**
  * @author Szymon Iwanski
  * @author Maciej Skowyra
@@ -33,7 +36,7 @@ public class Magazine implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "magazine_id", unique = true, nullable = false)
-	private long id;
+	private Long id;
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "magazine")
 	private List<Equipment> equipment;
@@ -46,9 +49,15 @@ public class Magazine implements Serializable {
 	
 	private String name;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, updatable=false)
 	private Date openDate;
 	
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateUpdated;
+		
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date closeDate;
 	
@@ -62,21 +71,23 @@ public class Magazine implements Serializable {
 		
 	}
 
-	public Magazine(List<Equipment> equipment, String name, Date openDate,
-			Date closeDate, Boolean status, String description) {
+	public Magazine(List<Equipment> equipment, String name, Date dateUpdated,
+			Date openDate, Date closeDate, boolean status, String description) {
+		super();
 		this.equipment = equipment;
 		this.name = name;
+		this.dateUpdated = dateUpdated;
 		this.openDate = openDate;
 		this.closeDate = closeDate;
 		this.status = status;
 		this.description = description;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -95,7 +106,7 @@ public class Magazine implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 	public Date getOpenDate() {
 		return openDate;
 	}
@@ -104,12 +115,24 @@ public class Magazine implements Serializable {
 		this.openDate = openDate;
 	}
 
+	public Date getDateUpdated() {
+		return dateUpdated;
+	}
+
+	public void setDateUpdated(Date dateUpdated) {
+		this.dateUpdated = dateUpdated;
+	}
+
 	public Date getCloseDate() {
 		return closeDate;
 	}
 
 	public void setCloseDate(Date closeDate) {
 		this.closeDate = closeDate;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	public Boolean getStatus() {
@@ -153,10 +176,12 @@ public class Magazine implements Serializable {
 		result = prime * result
 				+ ((closeDate == null) ? 0 : closeDate.hashCode());
 		result = prime * result
+				+ ((dateUpdated == null) ? 0 : dateUpdated.hashCode());
+		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result
 				+ ((equipment == null) ? 0 : equipment.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result
 				+ ((openDate == null) ? 0 : openDate.hashCode());
@@ -186,6 +211,11 @@ public class Magazine implements Serializable {
 				return false;
 		} else if (!closeDate.equals(other.closeDate))
 			return false;
+		if (dateUpdated == null) {
+			if (other.dateUpdated != null)
+				return false;
+		} else if (!dateUpdated.equals(other.dateUpdated))
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -196,7 +226,10 @@ public class Magazine implements Serializable {
 				return false;
 		} else if (!equipment.equals(other.equipment))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -223,5 +256,6 @@ public class Magazine implements Serializable {
 		return true;
 	}
 
+	
 	
 }

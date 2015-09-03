@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.nav-tabs a:first').tab('show'); // Select first tab
@@ -17,7 +18,9 @@
 		    });
 		}, 5000);
 	});
+	
 </script>
+
 <div class="row">
 	<div class="col-xs-12">
 	<c:if test="${not empty msg}">
@@ -32,15 +35,19 @@
 				</c:if>
 		<div class="box">			
 			<div class="box-header">
-				<h3 class="box-title">Lista urządzeń</h3>
-				<div class="box-tools">					
-					<div class="input-group" style="width: 150px;">						
+				<h3 class="box-title">Lista magazynów</h3>
+				<div class="box-tools">
+					<!-- <a href="<spring:url value="/register"/>" class="btn btn-primary btn-sm"> Dodaj urzytkownika </a>   -->
+					<!-- <a href="<spring:url value="/register"/>" class="btn btn-default btn-sm"> Dodaj urzytkownika </a>	 -->
+					<div class="input-group" style="width: 150px;">
+						
 						<input type="text" name="table_search"
 							class="form-control input-sm pull-right" placeholder="Search">
 						<div class="input-group-btn">															
 							<button class="btn btn-sm btn-default">
 								<i class="fa fa-search"></i>
-							</button>						
+							</button>
+						
 						</div>
 					</div>
 				</div>
@@ -48,39 +55,32 @@
 			<!-- /.box-header -->
 			<div class="box-body table-responsive no-padding">				
 			<c:choose>
-				<c:when test="${!empty equipment}">				
+				<c:when test="${!empty magazine}">				
 				<table class="table table-hover">					
 					<tr>						
-						<th>Nazwa</th>
-						<th>Typ</th>
-						<th>Numer seryjny</th>						
-						<th>Numer ewidencyjny</th>
-						<th>Data dodania</th>
-						<th>Data aktualizacji</th>							
+						<th>Nazwa magazynu</th>
+						<th>Data utworzenia</th>
+						<th>Data aktualizacji</th>
+						<th>Data zamknięcia</th>							
 						<th>Opcje</th>
 					</tr>
-					<c:forEach items="${equipment}" var="equipment">
+					<c:forEach items="${magazine}" var="magazine">
 						<tr>						
 							<td>
-								<a href="<spring:url value="/equipments/${equipment.id}"/>">
-									${equipment.name} 
+								<a href="<spring:url value="/magazine/${magazine.id}"/>">
+									${magazine.name} 
 								</a>
 							</td>							
-							<td>
-								<a href="<spring:url value="/equipments/type/${equipment.equipmentsType.id}"/>">
-									${equipment.equipmentsType.name}
-								</a>
-							</td>
-							<td>${equipment.serialNumber}</td>
-							<td>${equipment.equipmentsNumber}</td>
-							<td>${equipment.dateCreated}</td>
-							<td>${equipment.dateUpdated}</td>
+							<td>${magazine.openDate}</td>
+							<td>${magazine.dateUpdated}</td>
+							<td>${magazine.closeDate}</td>
 							<td>								
-								<a href="<spring:url value="/equipments/edit/${equipment.id}"/>" 
+									<a href="<spring:url value="/magazine/edit/${magazine.id}"/>" 
 									class="btn btn-xs btn-info"> Szczegóły </a>
 																
-								<a href="<spring:url value="/equipments/remove/${equipment.id}"/>"
-									class="btn btn-xs btn-danger triggerRemove"> Usuń </a>															 								    			
+									<a href="<spring:url value="/magazine/remove/${magazine.id}"/>"
+								class="btn btn-xs btn-danger triggerRemove"> Usuń </a>
+															 								    			
 					    	</td>
 						</tr>
 					</c:forEach>
@@ -116,7 +116,7 @@
 				</button>
 				<h4 class="modal-title">Usuwanie</h4>
 			</div>
-			<div class="modal-body">Czy jesteś pewien że chcesz usunąć ten przedmiot?
+			<div class="modal-body">Czy jesteś pewien że chcesz usunąć tego
 				urzytkownika?</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -125,4 +125,3 @@
 		</div>
 	</div>
 </div>
-
