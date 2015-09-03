@@ -34,22 +34,20 @@ public class EquipmentController {
 	private EquipmentsTypeService equipmentsTypeService;
 	
 	
-	@RequestMapping(value="/create", method = RequestMethod.GET)				
+	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public String createEquipment(Model model){
-		
-		List<EquipmentsType> equipmentsTypeList = equipmentsTypeService.findAllEquipmentsType();
-		model.addAttribute("equipmentsTypes", equipmentsTypeList);
-	//	model.addAttribute("equipmentsType", equipmentsTypeService.findAllEquipmentsType());
+		model.addAttribute("equipmentsTypes", equipmentsTypeService.findAllEquipmentsType());
 		model.addAttribute("equipment", new Equipment());
 		return "equipment.create";
 	}
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
-	public String saveEquipment(@Valid @ModelAttribute("equipment") Equipment equipment, @RequestParam("equipmentsType.id") Long equipmentsType, BindingResult result) {
+	public String saveEquipment(@Valid @ModelAttribute("equipment") Equipment equipment, BindingResult result,@RequestParam("equipmentsType.id") Long equipmentsType, Model model) {
         if (result.hasErrors()) {
         	logger.info("Error registri equipment");
+        	model.addAttribute("equipmentsTypes", equipmentsTypeService.findAllEquipmentsType());
             return "equipment.create";
-        }  
+        }        
         equipmentService.createEquipment(equipment, equipmentsType);
         logger.info("Correct register equipments");        
         return "redirect:/equipments?success";
