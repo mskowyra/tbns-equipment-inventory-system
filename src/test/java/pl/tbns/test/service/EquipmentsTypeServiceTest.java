@@ -40,7 +40,7 @@ public class EquipmentsTypeServiceTest extends TestCase{
 		equipmentsTypeService.createEquipmentsType(equipmentsType);
 		
 		Assert.assertNotNull(
-				"No equipments type added", equipmentsTypeService.findEquipmentsTypeById(equipmentsType.getId()));
+				"No equipments type added", equipmentsTypeService.getEquipmentsTypeById(equipmentsType.getId()));
 	}
 	@Ignore
 	@Test
@@ -53,6 +53,6 @@ public class EquipmentsTypeServiceTest extends TestCase{
 		equipmentsTypeService.deleteEqiupmentsTypeById(equipmentsTypeDao.findAll().get(0).getId());
 		
 		Assert.assertNull(
-				"Error! No equipments type deleted", equipmentsTypeService.findEquipmentsTypeById(equipmentsType.getId()));
+				"Error! No equipments type deleted", equipmentsTypeService.getEquipmentsTypeById(equipmentsType.getId()));
 	}
 }

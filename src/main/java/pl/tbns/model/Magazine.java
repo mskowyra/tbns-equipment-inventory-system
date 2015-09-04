@@ -6,13 +6,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,7 +30,7 @@ import org.hibernate.annotations.UpdateTimestamp;
  *
  */
 @Entity
-@Table(name = "Magazine")
+@Table(name = "magazine")
 public class Magazine implements Serializable {
 
 	private static final long serialVersionUID = 1816879387948066857L;
@@ -38,7 +40,7 @@ public class Magazine implements Serializable {
 	@Column(name = "magazine_id", unique = true, nullable = false)
 	private Long id;
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "magazine")
+	@OneToMany(mappedBy="magazine", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Equipment> equipment;
 	
 	@OneToMany(mappedBy = "sourceMagazine")
@@ -67,9 +69,7 @@ public class Magazine implements Serializable {
 	@Size(min = 0, max = 2000)
 	private String description;
 	
-	public Magazine() {
-		
-	}
+	public Magazine() {	}
 
 	public Magazine(List<Equipment> equipment, String name, Date dateUpdated,
 			Date openDate, Date closeDate, boolean status, String description) {

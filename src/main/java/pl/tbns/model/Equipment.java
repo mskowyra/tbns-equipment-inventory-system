@@ -3,7 +3,6 @@ package pl.tbns.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,8 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -63,13 +60,9 @@ public class Equipment implements Serializable {
 	@JoinColumn(name = "equipmentsType_id", nullable = false)
 	private EquipmentsType equipmentsType;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "magazine_equipment",
-			joinColumns = {@JoinColumn(name = "magazine_id")},
-			inverseJoinColumns = {@JoinColumn(name = "equipment_id")}
-			)
-	private List<Magazine> magazine;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "magazine_id")	
+	private Magazine magazine;
 	
 	@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -83,8 +76,7 @@ public class Equipment implements Serializable {
 	@OneToMany(mappedBy="equipment")
 	private Set<TransmissionHistory> traansmisHistory;
 	
-	public Equipment() {
-		
+	public Equipment() {		
 	}
 
 	public Equipment(String name, String serialNumber, String equipmentsNumber,
@@ -95,9 +87,7 @@ public class Equipment implements Serializable {
 		this.equipmentsNumber = equipmentsNumber;
 		this.description = description;
 		this.equipmentsType = equipmentsType;
-	}
-
-	
+	}	
 
 	public Long getId() {
 		return id;
@@ -147,11 +137,11 @@ public class Equipment implements Serializable {
 		this.equipmentsType = equipmentsType;
 	}
 
-	public List<Magazine> getMagazine() {
+	public Magazine getMagazine() {
 		return magazine;
 	}
 
-	public void setMagazine(List<Magazine> magazine) {
+	public void setMagazine(Magazine magazine) {
 		this.magazine = magazine;
 	}
 

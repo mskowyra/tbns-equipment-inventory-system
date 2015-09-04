@@ -75,7 +75,7 @@ public class EquipmentServiceTest extends TestCase{
 		Equipment equipment = new Equipment();
 		equipment.setName("Some equipment test create");
 		
-		equipmentService.createEquipment(equipment, equipmentsTypeId, magazineId);
+		equipmentService.createEquipment(equipment, equipmentsTypeId);
 		
 		Assert.assertNotNull("No equipment created", equipmentService.findEquipmentById(equipment.getId()));
 	}
@@ -106,7 +106,7 @@ public class EquipmentServiceTest extends TestCase{
 		Equipment equipment = new Equipment();
 		equipment.setName("Some equipment test delete");
 		
-		equipmentService.createEquipment(equipment, equipmentsTypeId, magazineId);
+		equipmentService.createEquipment(equipment, equipmentsTypeId);
 		equipmentService.deleteEquipmentById(equipmentDao.findAll().get(0).getId());
 		
 		Assert.assertNull("No equipment deleted", equipmentService.findEquipmentById(equipment.getId()));
