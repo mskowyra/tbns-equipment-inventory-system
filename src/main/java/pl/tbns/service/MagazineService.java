@@ -14,6 +14,7 @@ import pl.tbns.model.Magazine;
 public interface MagazineService {
 
 	public Magazine getMagazineByID(Long id);
+	public Magazine getMagazineLazyLoadById(Long id);
 	public List<Magazine> findAllMagazine();
 	public void createMagazine(Magazine magazine);
 	public void modifyMagazine(Magazine magazine);

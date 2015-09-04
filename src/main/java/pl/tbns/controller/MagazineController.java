@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,8 +39,7 @@ public class MagazineController {
 		}
 		magazineService.createMagazine(magazine);
 		return "redirect:/magazine?success";
-	}
-	
+	}	
 	@RequestMapping(method = RequestMethod.GET)
 	 public ModelAndView listMagazine(
 	    		@RequestParam(value = "success", required = false) String success , 
@@ -61,6 +61,18 @@ public class MagazineController {
 	       model.setViewName("magazine.list"); 	      
 	       return model;
 	    }
-
-	
+	 @RequestMapping("/remove/{id}")
+	 public String removeMagazine(@PathVariable Long id) {
+	    	logger.info("Magazine are deleted");
+	    	magazineService.deleteMagazineById(id);
+	        return "redirect:/magazine?remove";
+	 }	
+	 
+	 @RequestMapping(value="/{id}")
+	 public ModelAndView listEquipmentsInMagazine(@PathVariable Long id){
+		 ModelAndView model = new ModelAndView();
+		 model.addObject("magazineEquisList", magazineService.getMagazineLazyLoadById(id));
+		 model.setViewName("magazine.equipments.list");
+		 return model;
+	 }
 }

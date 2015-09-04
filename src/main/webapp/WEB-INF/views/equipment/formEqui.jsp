@@ -77,6 +77,19 @@
 							<form:textarea path="description" class="form-control" rows="3" placeholder="Wpisz . . ."/>
 							<form:errors path="description" cssClass="alert alert-warning" />
 						</div>
+					</div>	
+					
+					<div class="form-group has-feedback">
+						<label for="magazine" class="col-xs-3 control-label">Magazyn</label>
+						<div class="input-group col-xs-8">					
+						<form:select path="magazine.id" cssClass="form-control"	required="True" >
+								<form:option value="">Wybierz typ urządzenia</form:option>
+									<c:forEach items="${magazine}" var="magazine">
+										<form:option value="${magazine.id}">${magazine.name}</form:option>
+									</c:forEach>
+						</form:select>
+						<form:errors path="magazine.name" cssClass="alert alert-warning" />
+						</div>
 					</div>					
 
 				<div class="box-body pull-right">

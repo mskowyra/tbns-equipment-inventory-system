@@ -12,4 +12,5 @@ import pl.tbns.model.Magazine;
  */
 public interface MagazineDao extends JpaRepository<Magazine, Long> {
 
+	public Magazine getMagazineLazyLoadById(Long id);
 }

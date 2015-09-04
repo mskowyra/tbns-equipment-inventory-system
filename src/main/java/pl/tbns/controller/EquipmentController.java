@@ -18,40 +18,40 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.tbns.model.Equipment;
 import pl.tbns.service.EquipmentService;
 import pl.tbns.service.EquipmentsTypeService;
+import pl.tbns.service.MagazineService;
 
 @Controller
 @RequestMapping("/equipments")
 public class EquipmentController {
-	
 	private Logger logger = LoggerFactory.getLogger(EquipmentController.class);
-	
 	@Autowired
 	private EquipmentService equipmentService;
-	
 	@Autowired
 	private EquipmentsTypeService equipmentsTypeService;
-	
+	@Autowired
+	MagazineService magazineService;
 	
 	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public String createEquipment(Model model){
 		model.addAttribute("equipmentsTypes", equipmentsTypeService.findAllEquipmentsType());
+		model.addAttribute("magazine", magazineService.findAllMagazine());
 		model.addAttribute("equipment", new Equipment());
 		return "equipment.create";
 	}
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	public String saveEquipment(@Valid @ModelAttribute("equipment") Equipment equipment, BindingResult result,
-			@RequestParam("equipmentsType.id") Long equipmentsType, Model model) {
+			@RequestParam("equipmentsType.id") Long equipmentsType,@RequestParam("magazine.id") Long magazine, Model model) {
         if (result.hasErrors()) {
         	logger.info("Error registri equipment");
         	model.addAttribute("equipmentsTypes", equipmentsTypeService.findAllEquipmentsType());
+        	model.addAttribute("magazine", magazineService.findAllMagazine());
             return "equipment.create";
         }        
-        equipmentService.createEquipment(equipment, equipmentsType);
+        equipmentService.createEquipmentSetTypeSetMagazine(equipment, equipmentsType, magazine);
         logger.info("Correct register equipments");        
         return "redirect:/equipments?success";
-    } 
-	
+    } 	
 	 @RequestMapping(method = RequestMethod.GET)
 	 public ModelAndView listEqupipmentsType(
 	    		@RequestParam(value = "success", required = false) String success , 

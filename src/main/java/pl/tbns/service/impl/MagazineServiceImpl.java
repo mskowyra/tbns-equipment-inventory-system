@@ -25,6 +25,10 @@ public class MagazineServiceImpl implements MagazineService {
 	public Magazine getMagazineByID(Long id) {
 		return this.magazineDao.getOne(id);
 	}
+	
+	public Magazine getMagazineLazyLoadById(Long id) {
+		return this.magazineDao.getMagazineLazyLoadById(id);
+	}
 
 	public void createMagazine(Magazine magazine) {
 		magazineDao.save(magazine);
@@ -42,9 +46,10 @@ public class MagazineServiceImpl implements MagazineService {
 		return this.magazineDao.getOne(id);
 	}
 
-	@Override
+	
 	public List<Magazine> findAllMagazine() {
 		return this.magazineDao.findAll();
 	}
 
+	
 }

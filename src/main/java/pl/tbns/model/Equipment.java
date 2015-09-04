@@ -60,7 +60,7 @@ public class Equipment implements Serializable {
 	@JoinColumn(name = "equipmentsType_id", nullable = false)
 	private EquipmentsType equipmentsType;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "magazine_id")	
 	private Magazine magazine;
 	

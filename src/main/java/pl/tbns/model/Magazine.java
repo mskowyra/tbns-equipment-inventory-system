@@ -13,8 +13,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,13 +38,13 @@ public class Magazine implements Serializable {
 	@Column(name = "magazine_id", unique = true, nullable = false)
 	private Long id;
 	
-	@OneToMany(mappedBy="magazine", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="magazine", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Equipment> equipment;
 	
-	@OneToMany(mappedBy = "sourceMagazine")
+	@OneToMany(mappedBy = "sourceMagazine", fetch = FetchType.EAGER)
 	private Set<TransmissionHistory> transmisHistFromSource = new HashSet<TransmissionHistory>();
 	
-	@OneToMany(mappedBy = "destMagazine")
+	@OneToMany(mappedBy = "destMagazine", fetch = FetchType.EAGER)
 	private Set<TransmissionHistory> transmisHistFormDest = new HashSet<TransmissionHistory>();
 	
 	private String name;

@@ -36,7 +36,7 @@ public class UserController {
 	            return account(model, principal);
 	        }
 	        logger.info("Display list users site");
-	        String name = principal.getName();
+	 //       String name = principal.getName();
 	      
 	        return "redirect:/account";
 	    }

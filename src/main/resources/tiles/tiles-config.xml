@@ -5,103 +5,96 @@
         
 <tiles-definitions>
     <definition name="loginTemplate" template="/WEB-INF/views/templates/loginTemplate.jsp">
-    </definition>
-    
+    </definition>    
     <definition name="panelTemplate" template="/WEB-INF/views/templates/panelTemplate.jsp">          
     	<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp"/>
     	<put-attribute name="menu" value="/WEB-INF/views/templates/left-menu.jsp"/>
     	<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp"/>
     	<put-attribute name="control-sidebar" value="/WEB-INF/views/templates/control-sidebar.jsp"/>
-    </definition>
-    
+    </definition>    
     <definition name="login.index" extends="loginTemplate">
     	 <put-attribute name="body" value="/WEB-INF/views/login/login.jsp" />
-    </definition>
-    
-    <!-- Admin Template -->
-    
+    </definition>    
+    <!-- Admin Template -->    
     <definition name="admin.list.users" extends="panelTemplate">
     	  <put-attribute name="title" value="Users list"/>
     	 <put-attribute name="body" value="/WEB-INF/views/admin/users/listUsers.jsp" />
     	 <put-attribute name="current" value="users"/>
     </definition>
-
     <definition name="admin.register.user" extends="panelTemplate">
         <put-attribute name="title" value="User registration"/>
         <put-attribute name="body" value="/WEB-INF/views/admin/users/newUser.jsp"/>
         <put-attribute name="current" value="register"/>
-    </definition>
-        
+    </definition>        
      <definition name="admin.edit.user" extends="panelTemplate">
         <put-attribute name="title" value="User edit"/>
         <put-attribute name="body" value="/WEB-INF/views/admin/users/editUser.jsp"/>
         <put-attribute name="current" value="user-edit"/>
-    </definition>
-    
+    </definition>    
     <definition name="admin.detail.user" extends="panelTemplate">
         <put-attribute name="title" value="User detail"/>
         <put-attribute name="body" value="/WEB-INF/views/admin/users/detailsUser.jsp"/>
         <put-attribute name="current" value="user-detail"/>
-    </definition>        
-    
+    </definition>    
     <definition name="index" extends="panelTemplate">
         <put-attribute name="title" value="TBNS"/>
         <put-attribute name="body" value="/WEB-INF/views/index.jsp"/>
         <put-attribute name="current" value="index"/>
-    </definition>      
-    
-    <!-- Type Equipment Type Template -->
-    		
+    </definition>    
+    <!-- Type Equipment Type Template -->    		
      <definition name="equipment.type.create" extends="panelTemplate">
         <put-attribute name="title" value="Equipments Type Create"/>
         <put-attribute name="body" value="/WEB-INF/views/equipmentType/newTypeEqui.jsp"/>
         <put-attribute name="current" value="index"/>
-    </definition> 
-    
+    </definition>     
     <definition name="equipment.type.list" extends="panelTemplate">
     	  <put-attribute name="title" value="Equipments Type List"/>
     	 <put-attribute name="body" value="/WEB-INF/views/equipmentType/listEuipmentsType.jsp" />
     	 <put-attribute name="current" value="users"/>
-    </definition>
-  
+    </definition>  
  	 <definition name="equipment.type.edit" extends="panelTemplate">
         <put-attribute name="title" value="User edit"/>
         <put-attribute name="body" value="/WEB-INF/views/equipmentType/editEquiType.jsp"/>
         <put-attribute name="current" value="user-edit"/>
-    </definition>
-    
-    <!-- Equipment Template -->
-    
+    </definition>    
+    <!-- Equipment Template -->    
     <definition name="equipment.create" extends="panelTemplate">
         <put-attribute name="title" value="Equipments Create"/>
         <put-attribute name="body" value="/WEB-INF/views/equipment/newEqui.jsp"/>
         <put-attribute name="current" value="index"/>
-    </definition>     
-    
+    </definition>    
     <definition name="equipment.list" extends="panelTemplate">
     	  <put-attribute name="title" value="Equipments List"/>
     	 <put-attribute name="body" value="/WEB-INF/views/equipment/listEuipments.jsp" />
     	 <put-attribute name="current" value="users"/>
-    </definition>
-    
+    </definition>    
     <definition name="equipment.edit" extends="panelTemplate">
         <put-attribute name="title" value="Equipments  edit"/>
         <put-attribute name="body" value="/WEB-INF/views/equipment/editEqui.jsp"/>
         <put-attribute name="current" value="user-edit"/>
-    </definition>
-    
+    </definition>    
     <!-- Magazine Template -->
     <definition name="magazine.create" extends="panelTemplate">
         <put-attribute name="title" value="Magazine Create"/>
         <put-attribute name="body" value="/WEB-INF/views/magazine/newMagazine.jsp"/>
         <put-attribute name="current" value="index"/>
     </definition>        
-       
      <definition name="magazine.list" extends="panelTemplate">
     	  <put-attribute name="title" value="Magazine List"/>
     	 <put-attribute name="body" value="/WEB-INF/views/magazine/listMagazine.jsp" />
     	 <put-attribute name="current" value="magazine-list"/>
+    </definition>     
+    <definition name="magazine.equipments.list" extends="panelTemplate">
+    	  <put-attribute name="title" value="Magazine List"/>
+    	 <put-attribute name="body" value="/WEB-INF/views/magazine/equipmentInMagazine/equiListMagazine.jsp" />
+    	 <put-attribute name="current" value="equi-magazine-list"/>
     </definition>
+    
+    
+    
+    
+    
+    
     
     <definition name="account" extends="panelTemplate">
         <put-attribute name="title" value="User account"/>
