@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.tbns.model.Equipment;
+import pl.tbns.model.TransmissionHistory;
 import pl.tbns.service.EquipmentService;
 import pl.tbns.service.EquipmentsTypeService;
 import pl.tbns.service.MagazineService;
+import pl.tbns.service.TransmissionHistoryService;
 
 @Controller
 @RequestMapping("/equipments")
@@ -30,6 +32,8 @@ public class EquipmentController {
 	private EquipmentsTypeService equipmentsTypeService;
 	@Autowired
 	MagazineService magazineService;
+	@Autowired
+	TransmissionHistoryService transmissionHistoryService;
 	
 	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public String createEquipment(Model model){
@@ -49,6 +53,8 @@ public class EquipmentController {
             return "equipment.create";
         }        
         equipmentService.createEquipmentSetTypeSetMagazine(equipment, equipmentsType, magazine);
+     
+        transmissionHistoryService.createTransmissionHistory(equipment, magazine);
         logger.info("Correct register equipments");        
         return "redirect:/equipments?success";
     } 	

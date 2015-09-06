@@ -1,6 +1,7 @@
 package pl.tbns.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -42,7 +43,7 @@ public class Magazine implements Serializable {
 	private List<Equipment> equipment;
 	
 	@OneToMany(mappedBy = "sourceMagazine", fetch = FetchType.EAGER)
-	private Set<TransmissionHistory> transmisHistFromSource = new HashSet<TransmissionHistory>();
+	private List<TransmissionHistory> transmisHistFromSource = new ArrayList<TransmissionHistory>();
 	
 	@OneToMany(mappedBy = "destMagazine", fetch = FetchType.EAGER)
 	private Set<TransmissionHistory> transmisHistFormDest = new HashSet<TransmissionHistory>();
@@ -149,12 +150,12 @@ public class Magazine implements Serializable {
 		this.description = description;
 	}
 
-	public Set<TransmissionHistory> getTransmisHistFromSource() {
+	public List<TransmissionHistory> getTransmisHistFromSource() {
 		return transmisHistFromSource;
 	}
 
 	public void setTransmisHistFromSource(
-			Set<TransmissionHistory> transmisHistFromSource) {
+			List<TransmissionHistory> transmisHistFromSource) {
 		this.transmisHistFromSource = transmisHistFromSource;
 	}
 
@@ -252,6 +253,16 @@ public class Magazine implements Serializable {
 		} else if (!transmisHistFromSource.equals(other.transmisHistFromSource))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Magazine [id=" + id + ", equipment=" + equipment
+				+ ", transmisHistFromSource=" + transmisHistFromSource
+				+ ", transmisHistFormDest=" + transmisHistFormDest + ", name="
+				+ name + ", openDate=" + openDate + ", dateUpdated="
+				+ dateUpdated + ", closeDate=" + closeDate + ", status="
+				+ status + ", description=" + description + "]";
 	}
 
 	

@@ -36,12 +36,21 @@ public class TransmissionHistoryServiceImpl implements
 	public TransmissionHistory getTransmissionHistoryById(Long id) {
 		return this.transmissionHistoryDao.getOne(id);
 	}
+	
+	
+	public void createTransmissionHistory(Equipment equipment,	Long sourceMagazineId) {
+		 TransmissionHistory transmissionHistory = new TransmissionHistory();
+		 transmissionHistory.setEquipment(equipment);
+		 Magazine sourceMagazine = magazineDao.getOne(sourceMagazineId);
+		 transmissionHistory.setSourceMagazine(sourceMagazine);
+		 transmissionHistoryDao.save(transmissionHistory);
+	}
 
 	/*
-	 * Trzeba rozkminiæ jak pobraæ id magazynu bierz¹cego bezpoœrednio z equipment 
-	 * a nie podawaæ go w parametrze.
-	 * Problem jest ¿e Magazyn w Equipment jest typu List<Magazine>
-	 * a my musimy podaæ w sourceMagazine typu Magazine
+	 * Trzeba rozkminiï¿½ jak pobraï¿½ id magazynu bierzï¿½cego bezpoï¿½rednio z equipment 
+	 * a nie podawaï¿½ go w parametrze.
+	 * Problem jest ï¿½e Magazyn w Equipment jest typu List<Magazine>
+	 * a my musimy podaï¿½ w sourceMagazine typu Magazine
 	 */
 	public void createTransmissionHistory(
 			TransmissionHistory transmissionHistory, Long equipmentId,
@@ -89,7 +98,6 @@ public class TransmissionHistoryServiceImpl implements
 	}
 
 	
-
 	
 
 }

@@ -29,7 +29,7 @@ public class TransmissionHistory implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "transmisHist_id", unique = true, nullable = false)
-	private long id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name = "equipment_id")
@@ -87,11 +87,11 @@ public class TransmissionHistory implements Serializable {
 		DateCreated = dateCreated;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

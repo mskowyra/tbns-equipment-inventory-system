@@ -3,7 +3,7 @@ package pl.tbns.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -60,7 +60,7 @@ public class Equipment implements Serializable {
 	@JoinColumn(name = "equipmentsType_id", nullable = false)
 	private EquipmentsType equipmentsType;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "magazine_id")	
 	private Magazine magazine;
 	
@@ -73,8 +73,8 @@ public class Equipment implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateUpdated;
 	
-	@OneToMany(mappedBy="equipment")
-	private Set<TransmissionHistory> traansmisHistory;
+	@OneToMany(mappedBy="equipment", fetch = FetchType.EAGER)
+	private List<TransmissionHistory> transmisHistory;
 	
 	public Equipment() {		
 	}
@@ -161,12 +161,12 @@ public class Equipment implements Serializable {
 		this.dateUpdated = dateUpdated;
 	}
 
-	public Set<TransmissionHistory> getTraansmisHistory() {
-		return traansmisHistory;
+	public List<TransmissionHistory> getTransmisHistory() {
+		return transmisHistory;
 	}
 
-	public void setTraansmisHistory(Set<TransmissionHistory> traansmisHistory) {
-		this.traansmisHistory = traansmisHistory;
+	public void setTransmisHistory(List<TransmissionHistory> transmisHistory) {
+		this.transmisHistory = transmisHistory;
 	}
 
 	@Override
