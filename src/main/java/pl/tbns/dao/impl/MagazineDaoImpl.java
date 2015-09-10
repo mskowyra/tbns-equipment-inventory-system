@@ -9,6 +9,7 @@ public abstract class MagazineDaoImpl extends HibernateDaoSupport implements Mag
 	public Magazine getMagazineLazyLoadById(Long id){
 		Magazine magazine = getOne(id);
 			getHibernateTemplate().initialize(magazine.getEquipment());
+			
 	return magazine;
 	}
 

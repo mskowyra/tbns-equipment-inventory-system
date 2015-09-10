@@ -2,6 +2,7 @@
 package pl.tbns.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class Equipment implements Serializable {
 	private Date dateUpdated;
 	
 	@OneToMany(mappedBy="equipment", fetch = FetchType.EAGER)
-	private List<TransmissionHistory> transmisHistory;
+	private List<TransmissionHistory> transmisHistory = new ArrayList<TransmissionHistory>();
 	
 	public Equipment() {		
 	}

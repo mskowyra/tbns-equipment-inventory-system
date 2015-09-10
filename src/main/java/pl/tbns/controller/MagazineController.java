@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.tbns.model.Magazine;
+import pl.tbns.service.EquipmentService;
 import pl.tbns.service.MagazineService;
+import pl.tbns.service.TransmissionHistoryService;
 
 @Controller
 @RequestMapping(value="/magazine")
@@ -25,6 +27,10 @@ public class MagazineController {
 	
 	@Autowired
 	private MagazineService magazineService;	
+	@Autowired
+	private EquipmentService equipmentService;
+	@Autowired
+	private TransmissionHistoryService transmissionHistoryService;
 	
 	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public String createMagazine(Model model){
@@ -69,10 +75,9 @@ public class MagazineController {
 	 }	
 	 
 	 @RequestMapping(value="/{id}")
-	 public ModelAndView listEquipmentsInMagazine(@PathVariable Long id){
-		 ModelAndView model = new ModelAndView();
-		 model.addObject("magazineEquisList", magazineService.getMagazineLazyLoadById(id));
-		 model.setViewName("magazine.equipments.list");
-		 return model;
+	 public String listEquipmentsInMagazine(@PathVariable Long id, Model model){	
+			logger.info("List Equipments in Magazine on id=");
+		 model.addAttribute("magazineEquisList", transmissionHistoryService.findbyMagazine(id));		
+		 return "magazine.equipments.list";
 	 }
 }

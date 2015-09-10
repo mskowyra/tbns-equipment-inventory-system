@@ -255,16 +255,6 @@ public class Magazine implements Serializable {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Magazine [id=" + id + ", equipment=" + equipment
-				+ ", transmisHistFromSource=" + transmisHistFromSource
-				+ ", transmisHistFormDest=" + transmisHistFormDest + ", name="
-				+ name + ", openDate=" + openDate + ", dateUpdated="
-				+ dateUpdated + ", closeDate=" + closeDate + ", status="
-				+ status + ", description=" + description + "]";
-	}
-
-	
+		
 	
 }

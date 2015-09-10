@@ -61,19 +61,20 @@
 						<th>Magazyn</th>		
 						<th>Lorem ispum</th>							
 					</tr>
-					<c:forEach items="${magazineEquisList.equipment}" var="equipment">
+					<c:forEach items="${magazineEquisList}" var="th">
 						<tr>												
-							<td>
-								<a href="<spring:url value="/equipments/${equipment.id}"/>">
-									${equipment.name} 
-								</a>
+							<td>						
+								${th.equipment.name} 								
 							</td>	
 							<td>
-								<a href="<spring:url value="/equipments/type/${equipment.equipmentsType.id}"/>">
-									${equipment.equipmentsType.name} 
-								</a>
+								${th.equipment.equipmentsType.name} 								
 							</td>	
-						 <td>${equipment.transmisHistory} </td>				
+								<td>							
+								${th.sourceMagazine.name} 								
+							</td>	
+							<td>							
+								${th.destMagazine.name} 								
+							</td>	
 						</tr>
 					</c:forEach>
 				</table>

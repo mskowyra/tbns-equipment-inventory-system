@@ -53,11 +53,11 @@ public class EquipmentController {
             return "equipment.create";
         }        
         equipmentService.createEquipmentSetTypeSetMagazine(equipment, equipmentsType, magazine);
-     
         transmissionHistoryService.createTransmissionHistory(equipment, magazine);
         logger.info("Correct register equipments");        
         return "redirect:/equipments?success";
     } 	
+	
 	 @RequestMapping(method = RequestMethod.GET)
 	 public ModelAndView listEqupipmentsType(
 	    		@RequestParam(value = "success", required = false) String success , 

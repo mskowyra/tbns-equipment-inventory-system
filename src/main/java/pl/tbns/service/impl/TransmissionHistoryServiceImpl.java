@@ -1,5 +1,7 @@
 package pl.tbns.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +39,9 @@ public class TransmissionHistoryServiceImpl implements
 		return this.transmissionHistoryDao.getOne(id);
 	}
 	
+	public List<TransmissionHistory> findbyMagazine(Long magazineId) {
+		return transmissionHistoryDao.findbyMagazine(magazineId);
+	}
 	
 	public void createTransmissionHistory(Equipment equipment,	Long sourceMagazineId) {
 		 TransmissionHistory transmissionHistory = new TransmissionHistory();
@@ -90,14 +95,9 @@ public class TransmissionHistoryServiceImpl implements
 
 	public void deleteTransmissionHistoryById(Long id) {
 		this.transmissionHistoryDao.delete(id);
-
 	}
 
 	public TransmissionHistory findTransmissionHistoryById(Long id) {
 		return this.transmissionHistoryDao.getOne(id);
-	}
-
-	
-	
-
+	}	
 }

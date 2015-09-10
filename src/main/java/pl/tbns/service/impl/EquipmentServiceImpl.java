@@ -34,10 +34,15 @@ public class EquipmentServiceImpl implements EquipmentService {
 		return this.equipmentDao.getOne(id);
 	}
 	
-	@Override
+
 	public List<Equipment> findAllEquipment() {
 		return equipmentDao.findAll();
 	}
+	
+	public List<Equipment> findbyMagazine(Long id) {
+		return equipmentDao.findbyMagazine(id);
+	}
+	
 	public Equipment getEquipmenLazyLoadById(Long id){
 		return equipmentDao.getEquipmenLazyLoadById(id);
 	}
@@ -73,6 +78,8 @@ public class EquipmentServiceImpl implements EquipmentService {
 	public Equipment findEquipmentById(Long id) {
 		return this.equipmentDao.getOne(id);
 	}
+
+	
 		
 
 }

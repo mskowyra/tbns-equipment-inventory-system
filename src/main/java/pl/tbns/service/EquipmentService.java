@@ -14,6 +14,7 @@ public interface EquipmentService {
 
 	public Equipment getEquipmentById(Long id);
 	public Equipment getEquipmenLazyLoadById(Long id);
+	public List<Equipment> findbyMagazine(Long id);
 	public List<Equipment> findAllEquipment();
 	public Equipment createEquipment(Equipment equipment, Long equipmentsTypeId);
 	public Equipment createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId, Long magazineId);
