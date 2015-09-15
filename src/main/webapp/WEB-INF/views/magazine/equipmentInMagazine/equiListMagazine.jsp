@@ -59,21 +59,27 @@
 						<th>Nazwa urządzenia</th>
 						<th>Typ urządzenia</th>	
 						<th>Magazyn</th>		
-						<th>Lorem ispum</th>							
+						<th>Data historii</th>							
 					</tr>
 					<c:forEach items="${magazineEquisList}" var="th">
 						<tr>												
-							<td>						
-								${th.equipment.name} 								
+							<td>	
+							<a href="<spring:url value="/equipments/${th.equipment.id}"/>">
+									${th.equipment.name} 
+								</a>									 								
 							</td>	
 							<td>
-								${th.equipment.equipmentsType.name} 								
+								<a href="<spring:url value="/equipments/type/${th.equipment.equipmentsType.id}"/>">
+									${th.equipment.equipmentsType.name} 
+								</a>																
 							</td>	
-								<td>							
-								${th.sourceMagazine.name} 								
+								<td><a href="<spring:url value="/magazine/${th.sourceMagazine.id} "/>">
+									${th.sourceMagazine.name} 	 
+								</a>							
+															
 							</td>	
 							<td>							
-								${th.destMagazine.name} 								
+								${th.dateCreated} 								
 							</td>	
 						</tr>
 					</c:forEach>

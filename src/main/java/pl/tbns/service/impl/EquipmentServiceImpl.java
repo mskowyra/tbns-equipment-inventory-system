@@ -13,6 +13,7 @@ import pl.tbns.model.Equipment;
 import pl.tbns.model.EquipmentsType;
 import pl.tbns.model.Magazine;
 import pl.tbns.service.EquipmentService;
+import pl.tbns.service.TransmissionHistoryService;
 
 /**
  * @author Maciej Skowyra
@@ -29,6 +30,8 @@ public class EquipmentServiceImpl implements EquipmentService {
 	private EquipmentsTypeDao equipmentsTypeDao;
 	@Autowired
 	private MagazineDao magazineDao;
+	@Autowired
+	private TransmissionHistoryService transmissionHistoryService; 
 
 	public Equipment getEquipmentById(Long id) {
 		return this.equipmentDao.getOne(id);
@@ -54,11 +57,12 @@ public class EquipmentServiceImpl implements EquipmentService {
 		return equipmentDao.saveAndFlush(equipment);		
 	}
 	
-	public Equipment createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId,Long magazineId) {
+	public Equipment createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId, Long magazineId) {
 		EquipmentsType equipmentsType = equipmentsTypeDao.getOne(equipmentsTypeId);
 		Magazine magazine = magazineDao.getOne(magazineId);
 		equipment.setEquipmentsType(equipmentsType);
 		equipment.setMagazine(magazine);
+		transmissionHistoryService.createTransmissionHistory(equipment, magazineId);
 		return equipmentDao.saveAndFlush(equipment);		
 	}
 

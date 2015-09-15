@@ -15,6 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 /**
  * @author Szymon Iwański
  * @author Maciej Skowyra
@@ -66,8 +68,10 @@ public class TransmissionHistory implements Serializable {
 	@Size(min = 0, max = 2000)
 	private String description;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date DateCreated;
+	@CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, updatable=false)
+	private Date dateCreated;
 
 	public TransmissionHistory() {
 	}
@@ -84,7 +88,7 @@ public class TransmissionHistory implements Serializable {
 		this.rejectDate = rejectDate;
 		this.status = status;
 		this.description = description;
-		DateCreated = dateCreated;
+		this.dateCreated = dateCreated;
 	}
 
 	public Long getId() {
@@ -160,11 +164,15 @@ public class TransmissionHistory implements Serializable {
 	}
 
 	public Date getDateCreated() {
-		return DateCreated;
+		return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
-		DateCreated = dateCreated;
+		this.dateCreated = dateCreated;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	public User getSourceUser() {

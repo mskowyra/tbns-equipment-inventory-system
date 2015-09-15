@@ -5,8 +5,6 @@ package pl.tbns.service;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
-
 import pl.tbns.model.Equipment;
 import pl.tbns.model.TransmissionHistory;
 

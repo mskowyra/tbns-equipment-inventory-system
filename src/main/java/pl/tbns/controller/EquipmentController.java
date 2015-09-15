@@ -53,7 +53,6 @@ public class EquipmentController {
             return "equipment.create";
         }        
         equipmentService.createEquipmentSetTypeSetMagazine(equipment, equipmentsType, magazine);
-        transmissionHistoryService.createTransmissionHistory(equipment, magazine);
         logger.info("Correct register equipments");        
         return "redirect:/equipments?success";
     } 	
