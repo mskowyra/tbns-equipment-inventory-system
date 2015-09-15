@@ -1,10 +1,13 @@
 package pl.tbns.controller;
 
+import java.security.Principal;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,12 +19,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.tbns.model.Equipment;
-import pl.tbns.model.TransmissionHistory;
+import pl.tbns.model.UserDetailsAdapter;
 import pl.tbns.service.EquipmentService;
 import pl.tbns.service.EquipmentsTypeService;
 import pl.tbns.service.MagazineService;
 import pl.tbns.service.TransmissionHistoryService;
+import pl.tbns.service.UserService;
 
+/**
+ * @author Maciej Skowyra 	
+ * @date Sep 15, 2015 11:41:02 PM
+ * 
+ */
 @Controller
 @RequestMapping("/equipments")
 public class EquipmentController {
@@ -34,6 +43,8 @@ public class EquipmentController {
 	MagazineService magazineService;
 	@Autowired
 	TransmissionHistoryService transmissionHistoryService;
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public String createEquipment(Model model){
@@ -45,14 +56,18 @@ public class EquipmentController {
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	public String saveEquipment(@Valid @ModelAttribute("equipment") Equipment equipment, BindingResult result,
-			@RequestParam("equipmentsType.id") Long equipmentsType,@RequestParam("magazine.id") Long magazine, Model model) {
+			@RequestParam("equipmentsType.id") Long equipmentsType,@RequestParam("magazine.id") Long magazine,Principal principal, Model model) {
         if (result.hasErrors()) {
         	logger.info("Error registri equipment");
         	model.addAttribute("equipmentsTypes", equipmentsTypeService.findAllEquipmentsType());
         	model.addAttribute("magazine", magazineService.findAllMagazine());
             return "equipment.create";
-        }        
-        equipmentService.createEquipmentSetTypeSetMagazine(equipment, equipmentsType, magazine);
+        } 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsAdapter userDetails = (UserDetailsAdapter) authentication.getPrincipal();
+        Long userId = userDetails.getId();
+        
+        equipmentService.createEquipmentSetTypeSetMagazine(equipment, equipmentsType, magazine, userId);
         logger.info("Correct register equipments");        
         return "redirect:/equipments?success";
     } 	

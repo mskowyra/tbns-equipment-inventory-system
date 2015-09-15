@@ -1,6 +1,9 @@
 package pl.tbns.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import pl.tbns.model.User;
 /**
  * @author Maciej Skowyra & Szymon Iwanski	
@@ -9,7 +12,7 @@ import pl.tbns.model.User;
  */
 public interface UserDao extends JpaRepository<User, Long> {
 
-	 User findByName(String name);
+	@Query(" FROM User WHERE name = :name ") 
+	User findByName(@Param("name") String name);	
 	
-
 }

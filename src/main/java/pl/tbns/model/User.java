@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,10 +42,10 @@ public class User  {
     private String password;
     private String first_name;
 	private String last_name;
+	private Boolean isEnabled;
     private boolean status;
     private long phone;
     
-
     @ManyToMany
     @JoinTable
     private List<Role> roles;
@@ -54,24 +56,25 @@ public class User  {
     @UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateUpdate;
-	/*
-	@PrePersist
-	  protected void onCreate() {
-		dateCreate = new Date();
-	  }
-
-	  @PreUpdate
-	  protected void onUpdate() {
-		dateUpdate = new Date();
-	  }
-	*/	
-	@OneToMany(mappedBy = "sourceUser")
+	
+	@OneToMany(mappedBy = "sourceUser", fetch = FetchType.LAZY)
 	private Set<TransmissionHistory> transmisHistFromSource = new HashSet<TransmissionHistory>();
 	
-	@OneToMany(mappedBy = "destUser")
+	@OneToMany(mappedBy = "destUser", fetch = FetchType.LAZY)
 	private Set<TransmissionHistory> transmisHistFormDest = new HashSet<TransmissionHistory>();	
     
-     public Long getId() {
+	 public User(){   
+	    };	       
+
+	public User(String name, String password, Boolean isEnabled, List<Role> roles) {
+			super();
+			this.name = name;
+			this.password = password;
+			this.isEnabled = isEnabled;
+			this.roles = roles;
+		}	
+	
+	public Long getId() {
         return id;
     }
 
@@ -176,6 +179,15 @@ public class User  {
 			Set<TransmissionHistory> transmisHistFormDest) {
 		this.transmisHistFormDest = transmisHistFormDest;
 	}
+	public Boolean getIsEnabled() {
+		return isEnabled;
+	}
+	public void setIsEnabled(Boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+	
+	@Transient
+	public String getFullName() { return first_name + " " + last_name; }
 
 	@Override
 	public int hashCode() {

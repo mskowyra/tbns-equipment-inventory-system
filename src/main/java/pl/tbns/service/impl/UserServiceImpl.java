@@ -3,6 +3,7 @@ package pl.tbns.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +40,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public User findOneUserById(Long id) {
-		return userDao.findOne(id);
+		return userDao.findOne(id);	
+		
 	}
-	
+		
 	public User findOneUserByName(String username) {
-        return userDao.findByName(username);
+        User user = userDao.findByName(username);
+        if (user != null){Hibernate.initialize(user.getRoles());}
+        return user;
     }
 
 	public void createUser(User user) {
@@ -61,6 +65,7 @@ public class UserServiceImpl implements UserService{
 	public void removeUser(Long id) {
 	    userDao.delete(id);
 	}
+
 	
 	/*
 	public void saveUserAdmin(User user) {

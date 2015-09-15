@@ -9,9 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.tbns.dao.EquipmentDao;
 import pl.tbns.dao.MagazineDao;
 import pl.tbns.dao.TransmissionHistoryDao;
+import pl.tbns.dao.UserDao;
 import pl.tbns.model.Equipment;
 import pl.tbns.model.Magazine;
 import pl.tbns.model.TransmissionHistory;
+import pl.tbns.model.User;
 import pl.tbns.service.EquipmentService;
 import pl.tbns.service.TransmissionHistoryService;
 
@@ -33,7 +35,8 @@ public class TransmissionHistoryServiceImpl implements
 	private EquipmentDao equipmentDao;
 	@Autowired
 	private MagazineDao magazineDao;
-	
+	@Autowired
+	private UserDao userDao;
 		
 	public TransmissionHistory getTransmissionHistoryById(Long id) {
 		return this.transmissionHistoryDao.getOne(id);
@@ -43,11 +46,13 @@ public class TransmissionHistoryServiceImpl implements
 		return transmissionHistoryDao.findbyMagazine(magazineId);
 	}
 	
-	public void createTransmissionHistory(Equipment equipment,	Long sourceMagazineId) {
+	public void createTransmissionHistory(Equipment equipment,	Long sourceMagazineId, Long sourceUserId) {
 		 TransmissionHistory transmissionHistory = new TransmissionHistory();
 		 transmissionHistory.setEquipment(equipment);
 		 Magazine sourceMagazine = magazineDao.getOne(sourceMagazineId);
 		 transmissionHistory.setSourceMagazine(sourceMagazine);
+		 User transmisHistFromSourceUser = userDao.getOne(sourceUserId);
+		 transmissionHistory.setSourceUser(transmisHistFromSourceUser);
 		 transmissionHistoryDao.save(transmissionHistory);
 	}
 

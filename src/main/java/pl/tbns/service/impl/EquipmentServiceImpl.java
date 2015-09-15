@@ -32,11 +32,10 @@ public class EquipmentServiceImpl implements EquipmentService {
 	private MagazineDao magazineDao;
 	@Autowired
 	private TransmissionHistoryService transmissionHistoryService; 
-
+	
 	public Equipment getEquipmentById(Long id) {
 		return this.equipmentDao.getOne(id);
-	}
-	
+	}	
 
 	public List<Equipment> findAllEquipment() {
 		return equipmentDao.findAll();
@@ -57,13 +56,13 @@ public class EquipmentServiceImpl implements EquipmentService {
 		return equipmentDao.saveAndFlush(equipment);		
 	}
 	
-	public Equipment createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId, Long magazineId) {
+	public Equipment createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId, Long magazineId, Long userId) {
 		EquipmentsType equipmentsType = equipmentsTypeDao.getOne(equipmentsTypeId);
 		Magazine magazine = magazineDao.getOne(magazineId);
 		equipment.setEquipmentsType(equipmentsType);
 		equipment.setMagazine(magazine);
-		transmissionHistoryService.createTransmissionHistory(equipment, magazineId);
-		return equipmentDao.saveAndFlush(equipment);		
+		transmissionHistoryService.createTransmissionHistory(equipment, magazineId, userId);
+		return equipmentDao.save(equipment);		
 	}
 
 	public void modifyEquipment(Equipment equipment, Long equipmentsTypeId,

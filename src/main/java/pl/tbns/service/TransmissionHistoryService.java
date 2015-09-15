@@ -1,6 +1,3 @@
-/**
- * 
- */
 package pl.tbns.service;
 
 import java.util.List;
@@ -17,7 +14,7 @@ public interface TransmissionHistoryService {
 
 	public TransmissionHistory getTransmissionHistoryById(Long id);
 	public List<TransmissionHistory> findbyMagazine(Long magazineId);
-	public void createTransmissionHistory(Equipment equipment, Long sourceMagazineId);
+	public void createTransmissionHistory(Equipment equipment, Long sourceMagazineId, Long sourceUserId);
 	public void createTransmissionHistory(TransmissionHistory transmissionHistory, Long equipmentId, Long sourceMagazineId, Long destMagazineId);
 	public void changeStatusTransmissionHistory(Long id, boolean status);
 	public void modifyTransmissionHistory(TransmissionHistory transmissionHistory, Long equipmentId, Long sourceMagazineId, Long destMagazineId);

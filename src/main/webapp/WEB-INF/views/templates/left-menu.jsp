@@ -17,10 +17,12 @@
             <div class="pull-left info">
               <p>Alexander Pierce</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online 
-              		<c:if test="${pageContext.request.userPrincipal.name != null}"> 
-						<p>Witaj, ${pageContext.request.userPrincipal.name}  
-						</p>       
-					</c:if></a>
+              		<security:authorize access="isAuthenticated()">
+			<div id="sessionInfo">
+				Witaj, <security:authentication property="principal.fullName" />.
+				
+			</div>
+				</security:authorize></a>
             </div>
           </div>
           <!-- search form

@@ -17,7 +17,7 @@ public interface EquipmentService {
 	public List<Equipment> findbyMagazine(Long id);
 	public List<Equipment> findAllEquipment();
 	public Equipment createEquipment(Equipment equipment, Long equipmentsTypeId);
-	public Equipment createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId, Long magazineId);
+	public Equipment createEquipmentSetTypeSetMagazine(Equipment equipment, Long equipmentsTypeId, Long magazineId, Long userId);
 	public void modifyEquipment(Equipment equipment, Long equipmentsTypeId, Long magazineId);
 	public void modifyForHistoryTransmissionEquipment(Equipment equipment, Long magazineId);
 	public void deleteEquipmentById(Long id);

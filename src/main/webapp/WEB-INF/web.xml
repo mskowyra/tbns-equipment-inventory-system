@@ -83,6 +83,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   
   <context-param>
         <param-name>spring.profiles.default</param-name>
-        <param-value>prod</param-value> <!--  dev or prod  -->
+        <param-value>dev</param-value> <!--  dev or prod  -->
    </context-param>
 </web-app>
