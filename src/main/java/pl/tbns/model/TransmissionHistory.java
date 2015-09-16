@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,11 +45,11 @@ public class TransmissionHistory implements Serializable {
 	@JoinColumn(name = "destMagazine_id")
 	private Magazine destMagazine; //magazyn docelowy
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "sourceUser_id")
 	private User sourceUser; //urzytkownik źródłowy
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "destUser_id")
 	private User destUser; //urzytkownik docelowy
 	

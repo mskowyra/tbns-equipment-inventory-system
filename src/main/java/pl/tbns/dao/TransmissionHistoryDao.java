@@ -19,8 +19,10 @@ public interface TransmissionHistoryDao extends JpaRepository<TransmissionHistor
 			+ "FROM TransmissionHistory "
 			+ "LEFT JOIN  equipment "
 			+ "ON TransmissionHistory.equipment_id = Equipment.equipment_id "
+			+ "LEFT JOIN User "
+			+ "ON TransmissionHistory.sourceUser_id = User.id "
 			+ "LEFT JOIN Magazine "
-			+ "ON TransmissionHistory.sourceMagazine_id = Magazine.magazine_id "
+			+ "ON TransmissionHistory.sourceMagazine_id = Magazine.magazine_id "			
 			+ "WHERE Magazine.magazine_id = :magazine_id ", nativeQuery=true )	
 	public List<TransmissionHistory> findbyMagazine(@Param("magazine_id") Long magazineId);
 }

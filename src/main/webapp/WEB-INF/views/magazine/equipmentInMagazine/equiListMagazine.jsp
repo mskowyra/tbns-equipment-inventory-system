@@ -58,7 +58,8 @@
 					<tr>						
 						<th>Nazwa urządzenia</th>
 						<th>Typ urządzenia</th>	
-						<th>Magazyn</th>		
+						<th>Magazyn</th>	
+						<th>Dodał do magazynu</th>	
 						<th>Data historii</th>							
 					</tr>
 					<c:forEach items="${magazineEquisList}" var="th">
@@ -77,7 +78,10 @@
 									${th.sourceMagazine.name} 	 
 								</a>							
 															
-							</td>	
+							</td>
+							<td>							
+								${th.sourceUser.fullName} 								
+							</td>								
 							<td>							
 								${th.dateCreated} 								
 							</td>	

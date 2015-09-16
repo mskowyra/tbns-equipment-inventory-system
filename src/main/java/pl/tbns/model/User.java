@@ -1,5 +1,6 @@
 package pl.tbns.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -32,6 +34,7 @@ public class User  {
 
     @Id
     @GeneratedValue
+    @Column(unique = true, nullable = false)
     private Long id;
     @Size(min = 3, message = "Name must be at least 3 characters!")
     private String name;
@@ -58,7 +61,7 @@ public class User  {
 	private Date dateUpdate;
 	
 	@OneToMany(mappedBy = "sourceUser", fetch = FetchType.LAZY)
-	private Set<TransmissionHistory> transmisHistFromSource = new HashSet<TransmissionHistory>();
+	private List<TransmissionHistory> transmisHistFromSource = new ArrayList<TransmissionHistory>();
 	
 	@OneToMany(mappedBy = "destUser", fetch = FetchType.LAZY)
 	private Set<TransmissionHistory> transmisHistFormDest = new HashSet<TransmissionHistory>();	
@@ -162,12 +165,12 @@ public class User  {
 		this.dateUpdate = dateUpdate;
 	}
 
-	public Set<TransmissionHistory> getTransmisHistFromSource() {
+	public List<TransmissionHistory> getTransmisHistFromSource() {
 		return transmisHistFromSource;
 	}
 
 	public void setTransmisHistFromSource(
-			Set<TransmissionHistory> transmisHistFromSource) {
+			List<TransmissionHistory> transmisHistFromSource) {
 		this.transmisHistFromSource = transmisHistFromSource;
 	}
 
@@ -193,30 +196,8 @@ public class User  {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((dateCreate == null) ? 0 : dateCreate.hashCode());
-		result = prime * result
-				+ ((dateUpdate == null) ? 0 : dateUpdate.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result
-				+ ((first_name == null) ? 0 : first_name.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((password == null) ? 0 : password.hashCode());
-		result = prime * result + (int) (phone ^ (phone >>> 32));
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
-		result = prime * result + (status ? 1231 : 1237);
-		result = prime
-				* result
-				+ ((transmisHistFormDest == null) ? 0 : transmisHistFormDest
-						.hashCode());
-		result = prime
-				* result
-				+ ((transmisHistFromSource == null) ? 0
-						: transmisHistFromSource.hashCode());
 		return result;
 	}
 
@@ -229,67 +210,17 @@ public class User  {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (dateCreate == null) {
-			if (other.dateCreate != null)
-				return false;
-		} else if (!dateCreate.equals(other.dateCreate))
-			return false;
-		if (dateUpdate == null) {
-			if (other.dateUpdate != null)
-				return false;
-		} else if (!dateUpdate.equals(other.dateUpdate))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (first_name == null) {
-			if (other.first_name != null)
-				return false;
-		} else if (!first_name.equals(other.first_name))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (last_name == null) {
-			if (other.last_name != null)
-				return false;
-		} else if (!last_name.equals(other.last_name))
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (phone != other.phone)
-			return false;
-		if (roles == null) {
-			if (other.roles != null)
-				return false;
-		} else if (!roles.equals(other.roles))
-			return false;
-		if (status != other.status)
-			return false;
-		if (transmisHistFormDest == null) {
-			if (other.transmisHistFormDest != null)
-				return false;
-		} else if (!transmisHistFormDest.equals(other.transmisHistFormDest))
-			return false;
-		if (transmisHistFromSource == null) {
-			if (other.transmisHistFromSource != null)
-				return false;
-		} else if (!transmisHistFromSource.equals(other.transmisHistFromSource))
-			return false;
 		return true;
 	}
-	
 	   
 }
